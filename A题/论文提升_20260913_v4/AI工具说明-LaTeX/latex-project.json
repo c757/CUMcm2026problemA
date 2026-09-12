@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "contest": "cumcm",
+  "main_tex": "main.tex",
+  "template": {
+    "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/AI工具说明-LaTeX",
+    "source": "用户已批准的v3 AI披露工程，追加本轮实际工作记录",
+    "version": "v3-20260912",
+    "sha256": "e0fd64c54df8ca087d7c9aea19d17709ae8aad1607c69ebdafb7fd82282bfaff"
+  },
+  "template_files": {
+    "build/main.build.json": "0f070d01fe548dc00d8d24eb9f4e74ec8cdb05bafd9a9f9114b7c87a63d58da0",
+    "build/main.log": "f9c242c0f370c0170a2430cab55225479742e1c33501ff38af67ccc0fe84a2b2",
+    "build/main.pdf": "ad1b212a075c29fc928496199efa4b89d892446e9134ce0bfdccecba282e4ed7",
+    "latex-project.json": "fa8304ff118b00096e59757fa0e66766834bd468328a6a2d25d6c2cb9b749db5",
+    "main.tex": "ef77539709fc95e765714a6359b46bdafcd1565553f6f4b232c595a7c89b6da0",
+    "references.bib": "c85fa9f8c7cdb3b0c8c2f394bebd7624f6ff5abdd6bac5b4f43b58e67ee7c222"
+  },
+  "resource_bindings": [],
+  "created_at": "2026-09-12T16:35:07.194675+00:00"
+}

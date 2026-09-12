@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-12T16:57:01.287528+00:00",
+  "passed": true,
+  "main_tex": "main.tex",
+  "project_root": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/论文提升_20260913_v4/AI工具说明-LaTeX",
+  "source_sha256": "fe19baf6bfcb015203cee67b86180906ea1b5ee1b039cb5780195adc0755ed32",
+  "compiled_source_sha256": "fe19baf6bfcb015203cee67b86180906ea1b5ee1b039cb5780195adc0755ed32",
+  "post_build_source_sha256": "fe19baf6bfcb015203cee67b86180906ea1b5ee1b039cb5780195adc0755ed32",
+  "pdf_sha256": "cfda14f73e1cd591451e76ecf497522709342f21c739f48bbbee72f4062adc48",
+  "project_manifest_sha256": "c8805bda6273f1f42049a05ee202369a443d3071b20ae98da81aba41fff3a12e",
+  "engine": "xelatex",
+  "tools": {
+    "latexmk": {
+      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/论文提升_20260913_v4/.work/bin/latexmk",
+      "version": "Latexmk, John Collins, 20 November 2021. Version 4.76"
+    },
+    "xelatex": {
+      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/.work/tex_runtime/usr/bin/xelatex",
+      "version": "XeTeX 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian)"
+    }
+  },
+  "commands": [
+    {
+      "command": [
+        "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/论文提升_20260913_v4/.work/bin/latexmk",
+        "-norc",
+        "-gg",
+        "-xelatex",
+        "-e",
+        "$xelatex = 'xelatex -no-shell-escape %O %S'",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "-file-line-error",
+        "-outdir=build",
+        "main.tex"
+      ],
+      "cwd": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/论文提升_20260913_v4/AI工具说明-LaTeX",
+      "returncode": 0,
+      "duration_seconds": 37.992
+    }
+  ],
+  "warnings": [],
+  "allowed_warnings": [],
+  "warning_override": {
+    "patterns": [],
+    "reason": null
+  },
+  "issues": [],
+  "reproduce": "/usr/bin/python3 /vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/.agents/skills/math-modeling/tools/latex/scripts/latex_paper.py build /vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/论文提升_20260913_v4/AI工具说明-LaTeX/main.tex --engine xelatex --timeout 300 --publish /vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/论文提升_20260913_v4/AI工具使用详情.pdf"
+}

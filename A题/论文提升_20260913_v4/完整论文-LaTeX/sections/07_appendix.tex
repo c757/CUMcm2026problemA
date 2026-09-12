@@ -1,0 +1,72 @@
+\section{支撑材料目录与复现说明}\label{app:materials}
+表\ref{tab:catalog}列出支撑材料。以下代码为计算、验证和导出本文结果的完整源文件，包括七个脚本和五个辅助模块；它们与电子支撑材料中的对应文件一致。输入附件和结果模板需保持相对目录不变，不能仅复制主求解器而遗漏读取和导出模块。数值运行不依赖论文编译环境，也不需要保留开发时的缓存、临时目录或代理配置。
+
+\begin{table}[htbp]\centering\small
+\caption{电子支撑材料目录}\label{tab:catalog}
+\begin{tabularx}{\linewidth}{lX}
+\toprule
+文件或目录 & 内容\\
+\midrule
+原题及附件目录 & 题目PDF、环境、半径及四个原始结果模板\\
+\texttt{solve.py} & 物性、网格、通量、雅可比、积分、事件与小例检验\\
+\texttt{run\_all.py} & 网格和时间复验、结果表、场数组及情景分析\\
+\texttt{make\_figures.py} & 从真实结果生成14组矢量和位图\\
+\texttt{verify\_moving\_domain.py} & 移动域解析模态、时空加密、错误算子与守恒测试\\
+\texttt{export\_result2\_full.py} & 全过程逐秒工作簿的分块导出和完整结构检查\\
+\texttt{reproduce.py} & 唯一完整入口，创建隔离目录并记录真实运行\\
+\texttt{test\_sync.py} & 采样统计与600秒导出的小规模回归\\
+\texttt{utils/} & 全量读表、绘图风格、图表自检、导出与环境记录\\
+\texttt{requirements.txt} & 本次已验证的Python包版本\\
+\texttt{results/} & 四个XLSX、六张题表、过程数组、诊断与参数摘要\\
+\texttt{figures/} & 原始输入、运行过程和结果图的PDF、SVG、PNG\\
+完整论文LaTeX目录 & 主文稿、章节、表格、绑定图及完整代码副本\\
+AI工具使用详情PDF & 关键提示、采纳范围、工具说明和人工复核提示\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+本次使用Python 3.10.12。先按依赖清单安装所需包，再准备文泉驿正黑TrueType字体：Linux可安装发行版的\texttt{fonts-wqy-zenhei}，也可把原版\texttt{wqy-zenhei.ttc}置于项目的\texttt{assets/}目录。字体不是计算过程中自动联网下载的隐含资源。Python依赖、原始输入和字体准备完成后，从项目根目录执行：
+\begin{Verbatim}[fontsize=\small,breaklines,breakanywhere]
+python3 -m pip install -r requirements.txt
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 -B reproduce.py
+\end{Verbatim}
+
+该命令在项目内新建\texttt{reproduced\_*}目录，从原始附件副本重新执行移动域解析检验、四问完整计算、网格及时间精度复验、全过程工作簿、六张题表、场数组、情景对照和14组图，不覆盖现有结果。某一步失败即返回非零退出码。快速回归和独立基准可分别执行：
+\begin{Verbatim}[fontsize=\small,breaklines,breakanywhere]
+python3 -B reproduce.py --smoke
+python3 -B verify_moving_domain.py
+python3 -B verify_moving_domain.py --mutant-only
+\end{Verbatim}
+
+最后一条命令故意使用错误几何算子，预期以非零退出码拒绝；不能将该预期失败与正式完整入口失败混同。快速回归仅覆盖600秒，不替代完整复现。问题二正式范围始终为全干燥过程逐秒输出，开发用前三小时选项不是本文交付范围。工作簿体积较大，因此采用分块采样和流式压缩写入，避免同时在内存中保存全部单元格对象。
+
+论文在LaTeX工程内以XeLaTeX编译两遍，无需shell escape或外部BibTeX。需准备ctex、fvextra、常用数学和表格宏包，以及Noto Serif/Sans CJK SC字体。论文中图使用已嵌入TrueType字体的矢量PDF，代码副本仅用于阅读和来源核对；实际数值命令应从包含原始附件的项目根目录运行。公开支撑压缩包保留全部数值、图和源码，但不重复打包字体二进制、主论文PDF及本机临时文件；字体应按上述方法准备，主论文单独交付。
+
+\section{完整计算与输出代码}
+\subsection{核心求解与诊断}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/solve.py}
+\subsection{全流程计算与结果导出}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/run_all.py}
+\subsection{真实结果可视化}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/make_figures.py}
+\subsection{移动域解析基准与错误算子测试}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/verify_moving_domain.py}
+\subsection{全过程逐秒工作簿导出与核对}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/export_result2_full.py}
+\subsection{隔离完整复现入口}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/reproduce.py}
+\subsection{诊断采样和导出回归}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/test_sync.py}
+\subsection{完整附件读取}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/utils/read_rows.py}
+\subsection{图表结构与布局检查}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/utils/plot_style.py}
+\subsection{统一科研绘图风格}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/utils/setup_style.py}
+\subsection{多格式图表导出}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/utils/export_figure.py}
+\subsection{输入与运行环境记录}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/utils/repro_manifest.py}
+\subsection{Python依赖版本}
+\VerbatimInput[fontsize=\small,breaklines]{code/requirements.txt}
+

@@ -1,0 +1,5 @@
+question,coarse_n,fine_n,temperature_max_difference,moisture_max_difference,event_relative_difference,sampled_times,passed,check
+1,640,640,8.635087411335007e-06,1.0454798582415492e-07,,1800,True,time_tolerance_1e-8_vs_1e-9
+3,640,640,1.4755448951575545e-05,1.2302287299981174e-07,1.7493657240073636e-09,3449,True,time_tolerance_1e-8_vs_1e-9
+2,640,640,1.4755448951575545e-05,1.2947153216202878e-07,,206902,True,time_tolerance_1e-8_vs_1e-9
+4,640,640,1.8423777397913454e-05,1.5888405680009043e-07,3.509646524684474e-09,3066,True,time_tolerance_1e-8_vs_1e-9

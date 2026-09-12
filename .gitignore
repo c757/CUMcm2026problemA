@@ -1,0 +1,43 @@
+# Project-local dependency environments and installer downloads (kept on disk).
+/.analysis_deps/
+/.drawio-tools/
+/.drawio-install.*/
+/.skill-install-*/
+
+# Internal verification, temporary reproductions and recoverable archives.
+**/.work/
+**/.回收站/
+**/.latex_smoke/
+**/.qa_*/
+**/reproduced_*/
+**/smoke_output_*/
+
+# Python/Node caches and local virtual environments.
+**/__pycache__/
+*.py[cod]
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+**/node_modules/
+**/.venv/
+**/venv/
+.DS_Store
+
+# Retain editable LaTeX and final PDFs, but not duplicate build outputs.
+/A题/论文提升_20260913_v4/完整论文-LaTeX/build/
+/A题/论文提升_20260913_v4/AI工具说明-LaTeX/build/
+
+# Never publish local authentication material.
+/.github-auth/
+.env
+.env.local
+.env.*.local
+.netrc
+.npmrc
+.pypirc
+id_rsa
+id_ed25519
+*.p12
+*.pfx
+
+# The repository-specific SSH private key is under .git/ssh/ and cannot be tracked.

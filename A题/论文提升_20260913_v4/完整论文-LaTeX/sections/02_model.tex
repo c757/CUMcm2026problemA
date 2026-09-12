@@ -1,0 +1,169 @@
+\section{模型假设、物性与热湿耦合方程}
+\subsection{状态、符号及必要闭合}
+记$\theta(r,t)$为摄氏温度，$C(r,t)$为干基含水率，$R(t)$为外半径，$\rho_h$为仅参与有效热容量的经验参数，$c_p$、$k$、$D$分别为题设比热、导热率和水分扩散系数。另用$\rho_d$表示质量守恒中的单位当前体积干物质质量，二者不混用。绝对温度仅在Arrhenius指数中使用，定义为$T_K=\theta+273.15$。表\ref{tab:symbol}集中列出单位，避免把传热系数$h$与时间小时混同，或把以米每秒计的传质系数直接当成质量通量。
+
+\begin{table}[htbp]\centering\small
+\caption{主要符号与量纲}\label{tab:symbol}
+\begin{tabular}{lll}
+\toprule
+符号 & 含义 & 单位\\
+\midrule
+$\theta,\theta_\infty$ & 药材温度、环境温度 & 摄氏度\\
+$C,C_e$ & 干基含水率、有效平衡含水率 & kg/kg\\
+$r,R,x=r/R$ & 物理半径、外半径、归一化半径 & m、m、1\\
+$\rho_h,c_p$ & 热容量经验参数、比热 & kg/m$^3$、J/(kg K)\\
+$\rho_d$ & 单位当前体积干物质质量 & kg/m$^3$\\
+$k,D$ & 导热率、水分扩散系数 & W/(m K)、m$^2$/s\\
+$h,h_m$ & 表面对流换热、有效传质系数 & W/(m$^2$ K)、m/s\\
+$A=\rho_h c_p$ & 有效体积热容量 & J/(m$^3$ K)\\
+$t_*,t_{\rm int}$ & 越阈事件、严格整秒终点 & s\\
+$\overline C,C_{\max}$ & 径向体积权均值、全域最大值 & kg/kg\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+本文建立理想化、有效参数的一维径向传热传质模型，目标是在题给数据和约定条件下描述变化规律，而非还原特定药材的完整真实物理过程。表\ref{tab:closure}集中给出模型闭合；后续推导、检验和对照均保持这些定义，不另行改变模型族。
+
+\begin{table}[htbp]\centering\small
+\caption{模型闭合与各项约定承担的作用}\label{tab:closure}
+\begin{tabularx}{\linewidth}{lXX}
+\toprule
+对象 & 明确约定 & 在模型中的作用\\
+\midrule
+空间与几何 & 轴向、周向均匀，径向可非均匀；长度不变 & 只求径向场；“全域”限于该场\\
+外部水分 & $C_e=W_a$为有效边界定义 & 将附件记录用于Robin传质驱动力，不识别真实吸附平衡\\
+能量 & 忽略蒸发潜热，无内部热源 & 采用$A(C)\theta_t$的有效热容量闭合\\
+两类密度 & $\rho_h$只用于$A=\rho_h c_p$；$\rho_d$用于干质量守恒 & 不附加$\rho_h=(1+C)\rho_d$关系\\
+未观测工况 & $t>4$小时取50摄氏度、0.05 kg/kg & 定义长期边界；以情景扰动评估其影响\\
+问题四运动 & 同调径向收缩，$x=r/R(t)$为材料坐标 & 外半径轨迹确定内部速度$v=r\dot R/R$\\
+干固体 & 初始密度空间均匀、干质量不流失 & 得到$\rho_d(t)R(t)^2=\rho_{d0}R_0^2$\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+其中同调性并非由外轮廓数据反演所得，而是使移动域方程闭合的运动定义。忽略潜热也不意味着题给经验参数已经吸收了该机制。热、质传递系数分别取题给$h=25$ W/(m$^2$ K)和$h_m=8\times10^{-7}$ m/s，四问均保持不变。
+
+\subsection{固定半径下的控制方程}
+对于问题一至三，$0\leq r\leq R_0$、$R_0=0.02$米。采用式\eqref{eq:pdes}给出局部热湿传递，题设变系数保留在散度内部。若直接写成$k$乘拉普拉斯算子，会遗漏导热率梯度的作用；若把$1/(\rho_h c_p)$也放进散度，则改变了原来的热容量模型。两种误写在常系数时可能看不出来，在问题二至四中会影响温湿反馈。
+
+\begin{equation}\label{eq:pdes}
+\begin{aligned}
+A(C)\frac{\partial\theta}{\partial t}
+&=\frac1r\frac{\partial}{\partial r}
+       \left(rk(C)\frac{\partial\theta}{\partial r}\right),\\
+\frac{\partial C}{\partial t}
+&=\frac1r\frac{\partial}{\partial r}
+       \left(rD(\theta,C)\frac{\partial C}{\partial r}\right).
+\end{aligned}
+\end{equation}
+
+初始条件见式\eqref{eq:initial}。温度初始与空气温度相同，初始热通量为零；含水率初始显著高于有效平衡值，表面在开始时立即向外传质。均匀初值的零径向梯度与初始Robin水分通量存在角点不相容，这是扩散初边值问题常见的短时边界层，不应通过修改初始表面含水率来消除。隐式积分从均匀初态发展该边界层，早期网格和步长检查因而不可省略。
+
+\begin{equation}\label{eq:initial}
+\theta(r,0)=28,\qquad C(r,0)=2.55,\qquad 0\leq r\leq R_0.
+\end{equation}
+
+中心满足轴对称条件，表面采用有限交换阻力的Robin条件，见式\eqref{eq:bc}。符号按外法向为正定义：脱水时$C_s>C_e$，向外水分通量为正；升温时$\theta_s<\theta_\infty$，向外热通量为负。这一符号约定使两类边界共享同一通量实现，减少在热量进入、质量流出之间分别判断符号的风险。
+
+\begin{equation}\label{eq:bc}
+\begin{aligned}
+\theta_r(0,t)&=0,\qquad C_r(0,t)=0,\\
+-k_s\theta_r(R_0,t)&=h(\theta_s-\theta_\infty),\qquad h=25,\\
+-D_sC_r(R_0,t)&=h_m(C_s-C_e),\qquad h_m=8\times10^{-7}.
+\end{aligned}
+\end{equation}
+
+式\eqref{eq:pdes}中的$A(C)\theta_t$不能替换为$\partial_t[A(C)\theta]$，后者多出$\theta A'(C)C_t$，会改变表\ref{tab:closure}定义的能量方程。本文因此检查通量离散与该有效方程的一致性，并对干基水分单独建立守恒关系，不把它扩展为未定义的多相总焓验证。
+
+\subsection{三组题设物性}
+问题一采用式\eqref{eq:props1}。虽然热方程为常系数线性扩散，水分方程仍是非线性的：随着表面干燥，$D$会减小，局部扩散阻力逐渐增加。因此问题一也不能使用一个常数扩散系数替代整个水分过程。
+
+\begin{equation}\label{eq:props1}
+\rho_h=820,\quad c_p=2600,\quad k=0.36,\quad
+D=7\times10^{-9}\exp(-0.89/C).
+\end{equation}
+
+问题二、三共享式\eqref{eq:props23}，其中指数温度必须使用开尔文。水分降低使有效热容量和导热率变化，温度升高则通过指数项促进水分扩散。这种双向作用要求在每一次隐式迭代中依据当前状态更新物性，不能仅在整秒输出时更新。问题二从$t=0$即使用本组物性，不是在问题一半小时末状态上切换。
+
+\begin{equation}\label{eq:props23}
+\begin{aligned}
+\rho_h&=650+128C,&
+c_p&=1450+\frac{2736C}{1+C},\\
+k&=0.21+\frac{0.38C}{1+C},&
+D&=0.0024\exp\left(-\frac{0.45}{C}-\frac{3850}{T_K}\right).
+\end{aligned}
+\end{equation}
+
+问题四使用式\eqref{eq:props4}，并同时引入实测半径。它不是仅把问题三的$R_0$换成$R(t)$，因为所有有效物性函数也发生变化。后文设置保持式\eqref{eq:props4}而固定半径的反事实，以区分几何与物性的作用。
+
+\begin{equation}\label{eq:props4}
+\begin{aligned}
+\rho_h&=760+90C,&
+c_p&=1850+\frac{2150C}{1+C},\\
+k&=0.12+\frac{0.20C}{1+C},&
+D&=0.00042\exp\left(-\frac{0.30}{C}-\frac{3850}{T_K}\right).
+\end{aligned}
+\end{equation}
+
+图\ref{fig:q3-dfunction}只展示式\eqref{eq:props23}在28和50摄氏度下的函数值，不是新增材料测量。高水分区扩散系数变化较缓，接近有效边界低含水率时则跨越多个数量级。这说明干燥后期可能由低水分表层形成的高阻力控制，而非保持初始扩散速度。与柱状食品热湿耦合研究中的温度依赖处理相一致\cite{tzempelikos2015quince}，本文保留Arrhenius结构；文献在此仅说明方法背景，不作为题给物性或一维假设的实验证据。
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=\linewidth]{figures/raw_q3_diffusivity.pdf}
+\caption{问题二、三的题设扩散函数：28与50摄氏度下，低含水率区的$D$迅速下降；纵轴为对数刻度，非实验数据。}\label{fig:q3-dfunction}
+\end{figure}
+
+\section{守恒有限体积与隐式求解}
+\subsection{表面加密网格及控制体}
+令$x=r/R$，固定域时$R=R_0$。使用包含中心和表面的$N+1$个节点，按式\eqref{eq:grid}向表面加密。这里$N$是区间数，不是节点数；近表面的较密节点用于分辨后期含水率陡降区域。网格分配只说明分辨率放在哪里，精度是否足够仍由多网格比较确定，本文不据此宣称相对均匀网格的等精度计算效率优势。
+
+\begin{equation}\label{eq:grid}
+x_i=1-\left(1-\frac{i}{N}\right)^2,\quad i=0,\ldots,N;\qquad
+x_{i+1/2}=\frac{x_i+x_{i+1}}2,\quad
+w_i=\frac{x_{i+1/2}^2-x_{i-1/2}^2}{2}.
+\end{equation}
+
+两端面分别取$x_{-1/2}=0$和$x_{N+1/2}=1$。$w_i$来自柱坐标体积权重$\int x\,dx$，而不是简单的节点间距；因此靠外的环形控制体与中心控制体具有不同权重。全部权重之和为$1/2$，径向平均可以直接计算为$2\sum_iw_iC_i$。若把这些节点当成等体积样本求算术平均，会偏置截面平均含水率。
+
+对一般变量$u$、扩散系数$a$，在相邻节点之间使用调和平均$a_{i+1/2}$，构造式\eqref{eq:flux}的向内通量记号$G$。两个半段串联的扩散阻力对应调和平均，尤其有利于保留低扩散系数表层的阻滞作用。这里的$G$包含径向面权重，但尚未除以控制体和$R^2$；它不是以千克每秒计的实际出水速率。
+
+\begin{equation}\label{eq:flux}
+\begin{aligned}
+a_{i+1/2}&=\frac{2a_i a_{i+1}}{a_i+a_{i+1}},\\
+G_{i+1/2}&=x_{i+1/2}a_{i+1/2}
+               \frac{u_{i+1}-u_i}{x_{i+1}-x_i},\\
+G_{-1/2}&=0,\qquad
+G_{N+1/2}=R\beta(u_\infty-u_N).
+\end{aligned}
+\end{equation}
+
+温度取$(u,a,\beta,u_\infty)=(\theta,k,h,\theta_\infty)$，水分取$(C,D,h_m,C_e)$。于是半离散方程统一为式\eqref{eq:fvm}，其中温度方程的$q_i=A_i$，水分方程的$q_i=1$。相邻控制体使用同一个面通量且符号相反，内部通量在全域求和时精确相消，这是归一化水分平衡的基础。
+
+\begin{equation}\label{eq:fvm}
+\frac{du_i}{dt}=
+\frac{G_{i+1/2}-G_{i-1/2}}{R^2w_iq_i}.
+\end{equation}
+
+中心的$1/r$表观奇点不通过人为加一个小半径回避，而由中心控制体积分自然消除。由$x_{1/2}=x_1/2$可得中心极限离散为式\eqref{eq:center}，系数为4而不是平板几何的2。这个差异若写错，会影响中心升温与最终中心脱水时间，却未必在表面曲线上明显暴露。
+
+\begin{equation}\label{eq:center}
+\frac{du_0}{dt}=
+\frac{4a_{1/2}(u_1-u_0)}{R^2x_1^2q_0}.
+\end{equation}
+
+\subsection{刚性积分与解析雅可比}
+加密网格使最小空间尺度变小，而低含水率又使不同位置的扩散时间相差很大，半离散系统具有刚性。本文使用BDF隐式积分，并提供解析稀疏雅可比。状态向量同时包含全部温度、水分以及用于平衡检查的累计归一化损失；各节点只与相邻节点直接耦合，雅可比具有稀疏块结构。热湿交叉块不能忽略：$C$改变热容量与导热率，$\theta$改变水分扩散系数。
+
+以调和平均$H(a,b)=2ab/(a+b)$为例，其导数及问题二、三的$D$导数见式\eqref{eq:jacderiv}。温度方程还必须包含热容量分母求导产生的修正$-\dot\theta_i A'_i/A_i$。若只对导热通量求导，得到的不是完整雅可比，可能降低长时稳态附近的求解稳定性。解析形式同时避免靠数值差分估计极小导数时产生不必要的运行警告。
+
+\begin{equation}\label{eq:jacderiv}
+\begin{aligned}
+\frac{\partial H}{\partial a}&=\frac{2b^2}{(a+b)^2},&
+\frac{\partial H}{\partial b}&=\frac{2a^2}{(a+b)^2},\\
+\frac{\partial D}{\partial\theta}&=D\frac{3850}{T_K^2},&
+\frac{\partial D}{\partial C}&=D\frac{0.45}{C^2}.
+\end{aligned}
+\end{equation}
+
+名义相对容差取$10^{-8}$，温度绝对容差$10^{-8}$摄氏度，含水率及累计损失绝对容差$10^{-10}$。前四小时最大时间步为15秒，之后为600秒；步长由隐式误差估计自动控制，最大值不是实际固定步长。四小时处分段处理环境延拓。半径曲线虽然在采样点改变斜率，但在随体方程中仅以连续的$R(t)$进入，求解器不需要用不稳定的数值差分估计半径导数。
+
+输出时间与内部积分步不同。程序利用每一积分段的连续输出，在题目指定时刻采样，再用保形分段三次插值映射到指定物理半径。对于单调的径向含水率剖面，保形插值不产生超出端点的新极值。输出四位小数只发生在Excel和论文展示阶段，误差比较、阈值判定及均值积分始终使用未舍入浮点状态。读取跨越分段边界或顺序不规则的请求时刻时，程序逐段分配并检查每个时刻均被覆盖，避免遗漏或读取未初始化状态。
