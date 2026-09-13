@@ -1,8 +1,3 @@
-"""Reproduce all four questions in a fresh local directory; never overwrite.
-
-Run from this project: python3 -B reproduce.py
-Use --smoke only for the 600-second integration/export regression tests.
-"""
 from pathlib import Path
 import argparse
 import hashlib

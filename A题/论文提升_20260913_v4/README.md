@@ -1,11 +1,11 @@
 # 基于守恒有限体积法的药材烘干热湿传递与收缩效应分析
 
-本目录为唯一正式工程。`完整论文.pdf`已替换为最终结构调整稿，共79页：摘要1页，正文（含AI声明、参考文献）30页，附录48页。计算模型、程序、数据与数值结果保持不变。
+本目录保留论文、AI工具使用说明及电子支撑材料。计算模型、程序、数据与数值结果保持不变。
 
 ## 文件入口
 
 - `完整论文.pdf`、`完整论文-LaTeX/`：论文及完整源码。
-- `AI工具使用详情.pdf`、`AI工具说明-LaTeX/`：真实AI使用披露及源码。
+- `AI工具使用详情.pdf`、`AI工具说明-LaTeX/`：AI工具使用说明及源码；当前说明仍标注为修改稿，提交前须核对。
 - `solve.py`、`run_all.py`、`reproduce.py`及其他脚本、`utils/`、`requirements.txt`：完整程序和依赖。
 - `results/`：全部结果、过程轨迹及既有数值验证记录。
 - `figures/`：原有数据图；`新增示意图/`：三张示意图的YAML、draw.io、SVG和PDF源文件。
@@ -35,6 +35,6 @@ xelatex -no-shell-escape -interaction=nonstopmode -halt-on-error main.tex
 xelatex -no-shell-escape -interaction=nonstopmode -halt-on-error main.tex
 ```
 
-本次仅归并已通过编译与检查的文件，没有重新计算或改写论文。PDF和对应源码逐文件核对一致；`.build.json`保留实际构建时的原始路径和记录，归并时未伪造新的构建记录。本地依赖、编辑过程和回收材料不进入Git仓库。
+本地依赖环境、编辑过程、编译输出、旧版Word稿和重复预览已移出仓库。运行与编译前需自行安装依赖。Git历史和推送配置保留，未执行提交或推送。
 
 AI使用声明完整保留，使用者须独立审阅论文并确认披露与提交要求。

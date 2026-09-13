@@ -1,4 +1,3 @@
-"""Small real-input regression of diagnostic scope and streamed output."""
 from pathlib import Path
 import json
 import tempfile

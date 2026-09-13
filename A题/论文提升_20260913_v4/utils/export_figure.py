@@ -1,33 +1,3 @@
-"""
-Scientific figure export utilities.
-Unified figure export to multiple formats at exact final size.
-
-- Vector preferred: PDF / SVG / EPS for line/bar/scatter (lossless, journal-friendly).
-- Raster for photos / micrographs: PNG / TIFF at >= 300 DPI; never JPEG for data figures.
-- Embeds TrueType fonts (fonttype 42) so journals don't reject Type-3 PDFs.
-- Optional grayscale preview to sanity-check colorblind safety.
-
-Usage
------
-    from export_figure import export_figure
-    import matplotlib.pyplot as plt
-
-    fig, ax = plt.subplots()
-    ax.plot([0,1,2],[3,1,4])
-
-    paths = export_figure(
-        fig,
-        basename="figs/fig1_main",
-        formats=["pdf", "svg", "png"],
-        size_inches=(3.5, 2.625),   # 强制成 Nature 单栏尺寸
-        dpi=600,
-        grayscale_preview=True,
-    )
-    # -> ['figs/fig1_main.pdf', 'figs/fig1_main.svg',
-    #     'figs/fig1_main.png', 'figs/fig1_main_grayscale.png']
-
-CLI: ``python export_figure.py demo`` 生成一张演示图并多格式导出。
-"""
 from __future__ import annotations
 
 import argparse
@@ -60,25 +30,6 @@ def export_figure(
     pad_inches: float = 0.05,
     transparent: bool = False,
 ) -> list[str]:
-    """
-    Export a matplotlib Figure to one or more formats at exact final size.
-
-    Args:
-        fig: matplotlib Figure object.
-        basename: 输出路径前缀（不含扩展名）；可包含子目录，自动创建。
-        formats: list/tuple of extensions, e.g. ['pdf', 'svg', 'png'].
-            Default: ['pdf', 'svg', 'png'].
-        dpi: raster 格式分辨率；建议 300（普通）/ 600（IEEE 等）。
-        size_inches: (width, height) 英寸；指定后会 fig.set_size_inches() 强制
-            最终尺寸。强烈建议传入——保证导出后不必在 Word/LaTeX 里二次缩放。
-        grayscale_preview: 额外生成一张 _grayscale.png 供色盲安全检查。
-        tight: 是否走 bbox_inches='tight'（裁掉留白）。
-        pad_inches: tight 模式下保留的边距（英寸）。
-        transparent: 透明背景（PPT/海报可能需要）。
-
-    Returns:
-        实际写出的文件路径列表。
-    """
     if formats is None:
         formats = ("pdf", "svg", "png")
     formats = [f.lower().lstrip(".") for f in formats]
@@ -92,10 +43,9 @@ def export_figure(
             raise ValueError("size_inches must be (width, height)")
         fig.set_size_inches(*size_inches)
 
-    # 强制嵌入 TrueType 字体（fonttype 42）；多家期刊明确拒绝 Type-3 PDF。
     plt.rcParams["pdf.fonttype"] = 42
     plt.rcParams["ps.fonttype"] = 42
-    plt.rcParams["svg.fonttype"] = "none"  # 文本仍可编辑，期刊通常更欢迎
+    plt.rcParams["svg.fonttype"] = "none"  
 
     saved: list[str] = []
     for fmt in formats:
@@ -125,10 +75,6 @@ def export_figure(
 
 
 def _grayscale_from(fig, basename: str, dpi: int) -> str | None:
-    """
-    导出灰度预览版用于色盲安全检查。
-    优先用 PIL 转灰度；找不到 PIL 时退化为重新画图（关闭颜色）。
-    """
     try:
         from PIL import Image
     except ImportError:
@@ -147,7 +93,6 @@ def _grayscale_from(fig, basename: str, dpi: int) -> str | None:
 
 
 def _demo(out_basename: str) -> None:
-    """Generate a small demo figure for quick smoke testing."""
     import numpy as np
     rng = np.random.default_rng(7)
     x = np.linspace(0, 10, 50)

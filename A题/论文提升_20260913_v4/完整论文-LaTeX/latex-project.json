@@ -56,102 +56,11 @@
   },
   "resource_bindings": [
     {
-      "source": "export_result2_full.py",
-      "destination": "code/export_result2_full.py",
-      "sha256": "c81ff0cbcd75cce601289aa82d74b07f323e0c1574728ebf19db7025fdca7694",
-      "hash_mode": "content",
-      "bound_at": "2026-09-13T08:44:44.552821+00:00"
-    },
-    {
-      "source": "make_figures.py",
-      "destination": "code/make_figures.py",
-      "sha256": "ef7a8af3e0f0251acc23091dc466cc892264bf06453a48c4ca2543819fc6081c",
-      "hash_mode": "content",
-      "bound_at": "2026-09-13T08:44:44.555668+00:00"
-    },
-    {
-      "source": "reproduce.py",
-      "destination": "code/reproduce.py",
-      "sha256": "08ba48f9fba7278a4ba04a5a2bb03f277de9ec33f531602868842d3ef12e5d2d",
-      "hash_mode": "content",
-      "bound_at": "2026-09-13T08:44:44.558108+00:00"
-    },
-    {
       "source": "requirements.txt",
       "destination": "code/requirements.txt",
       "sha256": "ad5b826b3746c67fb2ea58338748e212698d833fffe043699ca58a01f4f36eda",
       "hash_mode": "content",
       "bound_at": "2026-09-13T08:44:44.560329+00:00"
-    },
-    {
-      "source": "run_all.py",
-      "destination": "code/run_all.py",
-      "sha256": "4d226a3840a96572a772684d725e7327f4e671f48c80592d4181643faba381ad",
-      "hash_mode": "content",
-      "bound_at": "2026-09-13T08:44:44.562534+00:00"
-    },
-    {
-      "source": "solve.py",
-      "destination": "code/solve.py",
-      "sha256": "a08833e8e7e1ca2473048fde99a5c1b24706711264deba1921f829fd53a05687",
-      "hash_mode": "content",
-      "bound_at": "2026-09-13T08:44:44.564727+00:00"
-    },
-    {
-      "source": "test_sync.py",
-      "destination": "code/test_sync.py",
-      "sha256": "d228ef40927af1db6324351591b25860f75278e4568b398e253d402888818c59",
-      "hash_mode": "content",
-      "bound_at": "2026-09-13T08:44:44.567036+00:00"
-    },
-    {
-      "source": "utils/export_figure.py",
-      "destination": "code/utils/export_figure.py",
-      "sha256": "61fccd231374faee69c5ccf5161c4e3a58392f2bdae2c62c74914e437fe8b09f",
-      "hash_mode": "content",
-      "bound_at": "2026-09-13T08:44:44.569282+00:00"
-    },
-    {
-      "source": "utils/plot_style.py",
-      "destination": "code/utils/plot_style.py",
-      "sha256": "593ca567b5d3e25c61f0d0ee89ad1a3a4eb3a77bbffa58f119ee7dff22abb8d4",
-      "hash_mode": "content",
-      "bound_at": "2026-09-13T08:44:44.571489+00:00"
-    },
-    {
-      "source": "utils/read_rows.py",
-      "destination": "code/utils/read_rows.py",
-      "sha256": "ab15b3bd0d0c9b368af82c6e7836b1073167c965e382cf2d1fa654aa1b077e17",
-      "hash_mode": "content",
-      "bound_at": "2026-09-13T08:44:44.573872+00:00"
-    },
-    {
-      "source": "utils/repro_manifest.py",
-      "destination": "code/utils/repro_manifest.py",
-      "sha256": "5c1302f71571c68c5edcdfdab8708f7c524c85579b390c1dd2045a9591cd5ddf",
-      "hash_mode": "content",
-      "bound_at": "2026-09-13T08:44:44.576048+00:00"
-    },
-    {
-      "source": "utils/setup_style.py",
-      "destination": "code/utils/setup_style.py",
-      "sha256": "93877686cba0475274e1a2b504d3ce50fd23d675b91ef2d52ece5b537eb81893",
-      "hash_mode": "content",
-      "bound_at": "2026-09-13T08:44:44.578317+00:00"
-    },
-    {
-      "source": "verify_moving_domain.py",
-      "destination": "code/verify_moving_domain.py",
-      "sha256": "3f6f409da0fb700bb1c02f57389ddbd78a754d223083cd124d897d5f7187cf03",
-      "hash_mode": "content",
-      "bound_at": "2026-09-13T08:44:44.580521+00:00"
-    },
-    {
-      "source": "新增示意图/model_framework.pdf",
-      "destination": "figures/model_framework.pdf",
-      "sha256": "8cd7c9cdddbd0b212bf181e0f570fd67ce162032c368f2d73541f4d84177e7e3",
-      "hash_mode": "content",
-      "bound_at": "2026-09-13T08:44:44.587525+00:00"
     },
     {
       "source": "新增示意图/moving_coordinates.pdf",
@@ -245,11 +154,123 @@
       "bound_at": "2026-09-13T08:44:44.622728+00:00"
     },
     {
+      "source": "模型图预览/model_assumptions.pdf",
+      "destination": "figures/model_assumptions.pdf",
+      "sha256": "8940f8b3fa8ba6857905d83f38c9078adec3b40ea5307c331c63248e72744083",
+      "hash_mode": "content",
+      "bound_at": "2026-09-13T09:52:38.548251+00:00"
+    },
+    {
+      "source": "新增示意图/model_framework.pdf",
+      "destination": "figures/model_framework.pdf",
+      "sha256": "7dc71680603bd36d5b9c9a4dd2d29fb263d61ddcf50163e89a50d46217625975",
+      "hash_mode": "content",
+      "bound_at": "2026-09-13T10:11:34.763617+00:00"
+    },
+    {
       "source": "新增示意图/solver_flow.pdf",
       "destination": "figures/solver_flow.pdf",
-      "sha256": "63680334ef6c3476bde92e81e789def184e097afdcc1b4d0d21081cec3c91038",
+      "sha256": "6a69a0c437e2dcb1290c78954d5495e25930d425ff7aa489405b0eec9ee56894",
       "hash_mode": "content",
-      "bound_at": "2026-09-13T08:44:44.628557+00:00"
+      "bound_at": "2026-09-13T10:11:34.851252+00:00"
+    },
+    {
+      "source": "模型图预览/radial_finite_volume.pdf",
+      "destination": "figures/radial_finite_volume.pdf",
+      "sha256": "1bedb0540ea4c09083f2816d040a21f0f08619b7b2b4fb75f2590bf9210d4c19",
+      "hash_mode": "content",
+      "bound_at": "2026-09-13T10:15:57.932951+00:00"
+    },
+    {
+      "source": "模型图预览/thermal_moisture_coupling.pdf",
+      "destination": "figures/thermal_moisture_coupling.pdf",
+      "sha256": "3d3d19999a0c5bc3066a26943bed57b8ba79bf65cb56a63ce9a0e68a76fde93b",
+      "hash_mode": "content",
+      "bound_at": "2026-09-13T10:15:58.024297+00:00"
+    },
+    {
+      "source": "export_result2_full.py",
+      "destination": "code/export_result2_full.py",
+      "sha256": "2b2575fc43904b0e4140a9e817113e1df73c3362f2c21b636c474f2016946e16",
+      "hash_mode": "content",
+      "bound_at": "2026-09-13T10:35:26.676916+00:00"
+    },
+    {
+      "source": "make_figures.py",
+      "destination": "code/make_figures.py",
+      "sha256": "526bb03b274aab10d1733a77ca494175339e8199955ef1e31bf99f50d2fd86c1",
+      "hash_mode": "content",
+      "bound_at": "2026-09-13T10:35:26.773558+00:00"
+    },
+    {
+      "source": "reproduce.py",
+      "destination": "code/reproduce.py",
+      "sha256": "1906e26b215681d0eb12c16f5c7e6abd5bafec43503a2ea870b0a9b623580508",
+      "hash_mode": "content",
+      "bound_at": "2026-09-13T10:35:26.864856+00:00"
+    },
+    {
+      "source": "run_all.py",
+      "destination": "code/run_all.py",
+      "sha256": "fa733d888406834a65e92d00d9bfb8428b7b1185591caed0ffbd47d13f30c2e3",
+      "hash_mode": "content",
+      "bound_at": "2026-09-13T10:35:26.963020+00:00"
+    },
+    {
+      "source": "solve.py",
+      "destination": "code/solve.py",
+      "sha256": "fa2c69383955bf5d507856038d51a20e1176c6de9e65df40d1656f27179bd8e5",
+      "hash_mode": "content",
+      "bound_at": "2026-09-13T10:35:27.068255+00:00"
+    },
+    {
+      "source": "test_sync.py",
+      "destination": "code/test_sync.py",
+      "sha256": "d5bf9f86f3882b2674578f6980377173d7667d5ff3640a47dbee2430b8d6c1ac",
+      "hash_mode": "content",
+      "bound_at": "2026-09-13T10:35:27.157704+00:00"
+    },
+    {
+      "source": "utils/export_figure.py",
+      "destination": "code/utils/export_figure.py",
+      "sha256": "f8e5f428a2ca74e4edf95efd44364096c7aee174647a2d992a6d52f09f59571e",
+      "hash_mode": "content",
+      "bound_at": "2026-09-13T10:35:27.248958+00:00"
+    },
+    {
+      "source": "utils/plot_style.py",
+      "destination": "code/utils/plot_style.py",
+      "sha256": "5f5fd219789763a1911886166e9b5d4447a2492d0300b4ad8e17552cbe5aaec6",
+      "hash_mode": "content",
+      "bound_at": "2026-09-13T10:35:27.346262+00:00"
+    },
+    {
+      "source": "utils/read_rows.py",
+      "destination": "code/utils/read_rows.py",
+      "sha256": "fed47afa6097a197c07358971a2feaf0d8027768fcb58e05c4579ca7b39168a6",
+      "hash_mode": "content",
+      "bound_at": "2026-09-13T10:35:27.435456+00:00"
+    },
+    {
+      "source": "utils/repro_manifest.py",
+      "destination": "code/utils/repro_manifest.py",
+      "sha256": "a9121f1a709971ff0349cb6bcdf35270607e1c31e3dab62d53b089e3dd73031d",
+      "hash_mode": "content",
+      "bound_at": "2026-09-13T10:35:27.530946+00:00"
+    },
+    {
+      "source": "utils/setup_style.py",
+      "destination": "code/utils/setup_style.py",
+      "sha256": "31ad5fa4e969a817db0018208ab2955acfd26862aedd80e4b145cb2fb35e645f",
+      "hash_mode": "content",
+      "bound_at": "2026-09-13T10:35:27.625618+00:00"
+    },
+    {
+      "source": "verify_moving_domain.py",
+      "destination": "code/verify_moving_domain.py",
+      "sha256": "a4e3517c326c99b62968f843d98f5bdf81a8664590ae1f50540811adb7de68c8",
+      "hash_mode": "content",
+      "bound_at": "2026-09-13T10:35:27.720835+00:00"
     }
   ],
   "created_at": "2026-09-13T07:03:35.460169+00:00"

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""论文图的统一样式、字体选择与导出检查。"""
 
 from __future__ import annotations
 
@@ -10,9 +9,6 @@ from pathlib import Path
 from typing import Sequence
 
 
-# ---------------------------------------------------------------------------
-# 依赖资源定位
-# ---------------------------------------------------------------------------
 
 def _is_math_modeling_skill_root(path: Path) -> bool:
     return (
@@ -40,9 +36,6 @@ def _find_skill_root(path: Path) -> Path | None:
 
 SKILL_ROOT = _find_skill_root(Path(__file__))
 
-# ---------------------------------------------------------------------------
-# 色盲安全配色
-# ---------------------------------------------------------------------------
 
 PALETTE = {
     "primary": "#0072B2",
@@ -65,9 +58,6 @@ COLOR_SEQUENCE = tuple(PALETTE[name] for name in (
     "neutral",
 ))
 
-# ---------------------------------------------------------------------------
-# 论文栏宽（英寸）
-# ---------------------------------------------------------------------------
 
 WIDTHS_IN = {
     "single": 3.5,
@@ -75,9 +65,6 @@ WIDTHS_IN = {
     "report": 6.3,
 }
 
-# ---------------------------------------------------------------------------
-# 字体选择
-# ---------------------------------------------------------------------------
 
 _CJK_SANS = (
     "Noto Sans CJK SC",
@@ -94,7 +81,6 @@ def _available_fonts() -> set[str]:
 
 
 def choose_font(language: str = "zh") -> str:
-    """选择可用字体；中文字体缺失时给出警告并安全回退。"""
     if language not in {"zh", "en"}:
         raise ValueError("language 只能是 'zh' 或 'en'")
     available = _available_fonts()
@@ -113,12 +99,8 @@ def choose_font(language: str = "zh") -> str:
     return "DejaVu Sans"
 
 
-# ---------------------------------------------------------------------------
-# 尺寸计算
-# ---------------------------------------------------------------------------
 
 def figure_size(width: str = "report", aspect: float = 0.62) -> tuple[float, float]:
-    """按最终使用宽度返回英寸尺寸，避免在论文中二次大幅缩放。"""
     if width not in WIDTHS_IN:
         raise ValueError(f"未知宽度方案: {width}")
     if aspect <= 0:
@@ -127,9 +109,6 @@ def figure_size(width: str = "report", aspect: float = 0.62) -> tuple[float, flo
     return width_in, width_in * aspect
 
 
-# ---------------------------------------------------------------------------
-# 子图创建
-# ---------------------------------------------------------------------------
 
 def publication_subplots(
     nrows: int = 1,
@@ -141,7 +120,6 @@ def publication_subplots(
     height_ratios: Sequence[float] | None = None,
     squeeze: bool = True,
 ):
-    """按最终尺寸创建子图，并允许显式声明主次面板比例。"""
     import matplotlib.pyplot as plt
 
     if nrows < 1 or ncols < 1:
@@ -165,9 +143,6 @@ def publication_subplots(
     )
 
 
-# ---------------------------------------------------------------------------
-# 面板标签
-# ---------------------------------------------------------------------------
 
 from collections.abc import Iterable as _Iterable
 
@@ -179,7 +154,6 @@ def add_panel_labels(
     x_offset_pt: float = -8.0,
     y_offset_pt: float = 1.0,
 ) -> None:
-    """在各面板左上外侧添加小写粗体编号。"""
     axes_list = list(axes)
     panel_labels = list(labels) if labels is not None else [chr(97 + i) for i in range(len(axes_list))]
     if len(panel_labels) != len(axes_list):
@@ -199,12 +173,8 @@ def add_panel_labels(
         )
 
 
-# ---------------------------------------------------------------------------
-# 路径安全
-# ---------------------------------------------------------------------------
 
 def resolve_output_stem(output_stem: str | Path) -> Path:
-    """解析导出路径，避免覆盖工具资源目录。"""
     stem = Path(output_stem).expanduser().resolve()
     if stem.suffix.lower() in {".svg", ".png", ".pdf"}:
         stem = stem.with_suffix("")
@@ -216,14 +186,8 @@ def resolve_output_stem(output_stem: str | Path) -> Path:
     return stem
 
 
-# ---------------------------------------------------------------------------
-# 向后兼容：已被 tools/figure/ 新工具替代的函数
-# 以下函数保留以兼容现有测试和外部代码。新代码请使用
-# tools/figure/scripts/ 下的 setup_style、visual_qa、export_figure。
-# ---------------------------------------------------------------------------
 
 def apply_publication_style(language: str = "zh", width: str = "report") -> dict:
-    """应用出版样式基线（向后兼容）。新代码请用 setup_style()。"""
     import matplotlib as mpl
     from cycler import cycler
 
@@ -294,7 +258,6 @@ def _labels_overlap(labels, renderer, axis: str) -> bool:
 
 
 def audit_layout(fig) -> list[str]:
-    """在导出前检查缺字、画布外文字和相邻刻度重叠（向后兼容）。"""
     import matplotlib.text as mtext
 
     handler = _GlyphHandler()
@@ -349,7 +312,6 @@ def _is_colorbar_axis(axis) -> bool:
 
 
 def audit_design(fig) -> list[str]:
-    """检查可由对象结构确定的高风险设计（向后兼容）。"""
     from matplotlib.container import BarContainer
 
     issues: list[str] = []
@@ -450,7 +412,6 @@ def export_figure(
     strict_layout: bool = True,
     strict_design: bool = True,
 ) -> dict[str, str]:
-    """按固定物理尺寸导出（向后兼容）。新代码请用 tools/figure/scripts/export_figure.py。"""
     if dpi < 300:
         raise ValueError("论文图 PNG 的 dpi 不能低于 300")
     layout_issues = audit_layout(fig)

@@ -1,6 +1,6 @@
 \section{数据处理和模型准备}\label{sec:common}
 \subsection{模型假设}\label{sec:assumptions}
-以理想化有效连续介质描述药材，保留径向热湿差异、变物性和给定收缩。表\ref{tab:closure}列出共同假设及其建模作用，各项简化的适用范围和误差影响集中讨论于第\ref{sec:evaluation}章。
+本文以理想化有效连续介质描述药材，保留径向热湿差异、变物性和给定收缩。表\ref{tab:closure}列出共同假设及其建模作用，图\ref{fig:model-assumptions}示意径向传递及问题四的收缩边界，各项简化的适用范围和误差影响集中讨论于第\ref{sec:evaluation}章。
 
 \begin{table}[htbp]\centering\small
 \caption{模型假设及其作用}\label{tab:closure}
@@ -19,8 +19,14 @@
 \end{tabularx}
 \end{table}
 
+\begin{figure}[htbp]\centering
+\includegraphics[width=0.60\linewidth]{figures/model_assumptions.pdf}
+\caption{圆柱形药材的一维径向热湿传递与收缩示意}\label{fig:model-assumptions}
+\end{figure}
+\FloatBarrier
+
 \subsection{数据来源与预处理}
-附件1含241条环境记录，覆盖0至4~h，间隔60~s；附件2含145条半径记录，覆盖0至72~h，间隔1800~s。全部时刻严格递增，数据有限且无缺失。半径非增；145条记录含53个不同取值、92次相邻重复，这些平台段按原样保留。计算统一使用s和m，结果按题目要求换算为h和cm，输入与输出关系见表\ref{tab:data}。
+附件1含241条环境记录，覆盖0至4~h，间隔60~s；附件2含145条半径记录，覆盖0至72~h，间隔1800~s。时间严格递增，数值均有限、无缺失。半径单调不增；145条记录含53个不同取值、92次相邻重复，平台段按原样保留。本文计算统一采用s和m作为基本单位，结果按题目要求换算为h和cm，输入与输出关系见表\ref{tab:data}。
 
 \begin{table}[htbp]\centering\small
 \caption{原始附件与输出要求}\label{tab:data}
@@ -36,7 +42,7 @@
 \end{tabularx}
 \end{table}
 
-相邻记录间采用式\eqref{eq:interp}线性插值，其中$b_j$为第$j$条环境记录。这样既通过全部题给端点，也使两场在共同的连续时间边界下求解。
+本文对相邻记录采用式\eqref{eq:interp}进行线性插值，其中$b_j$为第$j$条环境记录。插值保留全部题给端点，两场在同一连续边界下求解。
 
 \begin{equation}\label{eq:interp}
 b(t)=b_j+\frac{t-t_j}{t_{j+1}-t_j}(b_{j+1}-b_j),
@@ -46,7 +52,7 @@ b\in\{\theta_\infty,C_e\}.
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=\linewidth]{figures/raw_q1_environment.pdf}
-\caption{题给环境温度与有效平衡含水率：241条记录及分段线性插值。}\label{fig:q1-environment}
+\caption{环境温度与有效平衡含水率的插值曲线}\label{fig:q1-environment}
 \end{figure}
 
 图\ref{fig:q1-environment}显示，环境温度在初期持续上升，后段接近50~℃；有效平衡含水率也逐步变化并趋于稳定。前期的时变边界决定预热响应，后段则为长时烘干提供近恒定外部工况。分段插值保留这一阶段差异。
@@ -59,8 +65,8 @@ b\in\{\theta_\infty,C_e\}.
 热湿反馈体现在$D(\theta,C)$、$k(C)$和$A(C)$中：升温促进扩散，失水改变水分迁移能力与热学响应。图\ref{fig:framework}概括从数据到结果的共同计算框架，四问分别选择对应的物性、几何与输出目标。
 
 \begin{figure}[htbp]\centering
-\includegraphics[width=\linewidth]{figures/model_framework.pdf}
-\caption{四问共同采用的模型框架；问题二、三共享同一变物性求解轨迹。}\label{fig:framework}
+\includegraphics[width=0.37\linewidth]{figures/model_framework.pdf}
+\caption{四问的统一模型框架}\label{fig:framework}
 \end{figure}
 
 框架把输入处理、模型求解和结果检验分开：附件确定边界与半径，方程给出温湿场，判据给出结束时间。解析基准与加密比较随后检查数值处理，水分收支检查内部一致性。
@@ -90,7 +96,7 @@ A(C)\frac{\partial\theta}{\partial t}
 \theta(r,0)=28,\qquad C(r,0)=2.55,\qquad 0\leq r\leq R_0.
 \end{equation}
 
-圆柱中心取对称条件，侧面取热、质对流交换条件，得到式\eqref{eq:bc}。下标$s$表示表面，$h$与$h_m$的含义和单位见表\ref{tab:symbol}。
+本文在圆柱中心采用对称条件，在侧面采用热、质对流交换条件，得到式\eqref{eq:bc}。下标$s$表示表面，$h$与$h_m$的含义和单位见表\ref{tab:symbol}。
 
 \begin{equation}\label{eq:bc}
 \begin{aligned}
@@ -100,34 +106,39 @@ A(C)\frac{\partial\theta}{\partial t}
 \end{aligned}
 \end{equation}
 
-向外通量取正。升温时$\theta_s<\theta_\infty$，对应热流向内；脱水时$C_s>C_e$，对应水流向外。题给均匀初始含水率在$t=0$与表面条件存在角点不相容，扩散解在$t>0$形成表层梯度，表面加密网格用于分辨这一短时变化。
+向外通量取正。升温时$\theta_s<\theta_\infty$，对应热流向内；脱水时$C_s>C_e$，对应水流向外。题给均匀初始含水率与表面条件在起始时刻不相容，解在$t>0$形成表层梯度，表面加密网格用于分辨这一短时变化。
 
 前4 h按附件插值，4 h整保留末条记录50.165~℃和0.04986~kg/kg；随后采用50~℃、0.05~kg/kg的恒定名义环境。全过程取$h=25$ W/(m$^2$ K)、$h_m=8\times\nobreak10^{-7}$~m/s，4 h处按边界切换分段积分。第\ref{sub:sensitivity}节比较该延拓与其他已计算情景。
 
 \subsection{评价指标与判定条件}
-问题一在0.50 h结束，问题二与问题三共用烘干终点。为描述脱水进程，式\eqref{eq:metrics}定义径向最大含水率、体积权均值和表面值。最大值直接对应“各处达标”，均值和表面值用于解释过程差异。
+问题一在0.50 h结束，问题二与问题三共用烘干终点。为描述脱水进程，本文采用式\eqref{eq:metrics}定义径向最大含水率、体积权均值和表面值。最大值直接对应“各处达标”，均值和表面值用于解释过程差异。
 
 \begin{equation}\label{eq:metrics}
-C_{\max}(t)=\max_{0\leq r\leq R(t)}C(r,t),\qquad
-\overline C(t)=\frac{2}{R(t)^2}\int_0^{R(t)}rC(r,t)\,dr,\qquad
-C_s(t)=C(R(t),t).
+\begin{aligned}
+C_{\max}(t)&=\max_{0\leq r\leq R(t)}C(r,t),\\
+\overline C(t)&=\frac{2}{R(t)^2}\int_0^{R(t)}rC(r,t)\,dr,\\
+C_s(t)&=C(R(t),t).
+\end{aligned}
 \end{equation}
 
 在全部径向节点上计算最大值，定位$C_{\max}-0.15$向下穿越零点的事件，再按式\eqref{eq:event}给出严格小于阈值的整秒输出。即使事件恰好出现在整数秒，也取下一秒，并以未舍入状态核对严格不等式。
 
 \begin{equation}\label{eq:event}
-C_{\max}(t_*)=0.15\ \text{且向下穿越},\qquad
-t_{\rm int}=\lfloor t_*\rfloor+1,\qquad
-C_{\max}(t_{\rm int})<0.15.
+\begin{aligned}
+C_{\max}(t_*)&=0.15\quad\text{且向下穿越},\\
+t_{\rm int}&=\lfloor t_*\rfloor+1,\qquad C_{\max}(t_{\rm int})<0.15.
+\end{aligned}
 \end{equation}
 
 \subsection{数值离散和公共求解方法}
-取归一化半径$x=r/R$，固定域令$R=R_0$。为兼顾中心对称与表层梯度，采用式\eqref{eq:grid}的$N+1$个节点。$x_{i+1/2}$表示控制体面，$w_i$是柱坐标积分$\int x\,dx$对应的权重。
+本文取归一化半径$x=r/R$，固定域令$R=R_0$。为兼顾中心对称与表层梯度，采用式\eqref{eq:grid}的$N+1$个节点。$x_{i+1/2}$表示控制体面，$w_i$是柱坐标积分$\int x\,dx$对应的权重。
 
 \begin{equation}\label{eq:grid}
-x_i=1-\left(1-\frac{i}{N}\right)^2,\quad i=0,\ldots,N;\qquad
-x_{i+1/2}=\frac{x_i+x_{i+1}}2,\quad
-w_i=\frac{x_{i+1/2}^2-x_{i-1/2}^2}{2}.
+\begin{aligned}
+x_i&=1-\left(1-\frac{i}{N}\right)^2,\quad i=0,\ldots,N;\\
+x_{i+1/2}&=\frac{x_i+x_{i+1}}2,\\
+w_i&=\frac{x_{i+1/2}^2-x_{i-1/2}^2}{2}.
+\end{aligned}
 \end{equation}
 
 两端面为$x_{-1/2}=0$、$x_{N+1/2}=1$，故权重之和为$1/2$。相邻半段的扩散阻力串联，面系数取调和平均。对一般状态$u$和扩散系数$a$，含径向面权重的通量$G$写成式\eqref{eq:flux}，$\kappa_b$为对应表面传递系数。
@@ -156,15 +167,15 @@ G_{N+1/2}=R\kappa_b(u_\infty-u_N).
 \frac{4a_{1/2}(u_1-u_0)}{R^2x_1^2q_0}.
 \end{equation}
 
-表面加密和变扩散率使半离散方程具有刚性，采用隐式BDF积分，并提供解析稀疏雅可比。导数同时包含面系数与容量分母的变化，问题二的具体导数见式\eqref{eq:jacderiv}。图\ref{fig:solver}给出公共求解流程。
+表面加密和变扩散系数使半离散方程具有刚性，本文采用隐式BDF积分，并提供解析稀疏雅可比。导数同时包含面系数与容量分母的变化，问题二的具体导数见式\eqref{eq:jacderiv}。图\ref{fig:solver}给出公共求解流程。
 
 \begin{figure}[htbp]\centering
-\includegraphics[width=\linewidth]{figures/solver_flow.pdf}
-\caption{公共数值求解流程；变物性和守恒方程在BDF积分调用中随状态更新。}\label{fig:solver}
+\includegraphics[width=0.60\linewidth]{figures/solver_flow.pdf}
+\caption{公共数值求解流程}\label{fig:solver}
 \end{figure}
 
 流程中的“事件检查”随时间积分进行：问题一采用给定时长，问题二、三共用最大含水率终点，问题四对移动域定位同一阈值。得到连续时间解后，再在指定物理位置作保形分段三次插值，生成题表和工作簿。
 
-四问统一采用640个区间，相对容差$10^{-8}$，温度绝对容差$10^{-8}$~℃，含水率及累计水分损失绝对容差$10^{-10}$~kg/kg。前4 h最大步长15~s，此后600~s，实际步长由BDF自适应选择。保形径向重建保持每段端点值域，终点按全部节点的未舍入状态判定；空间和时间分辨率依据见第\ref{sec:checks}节。
+四问统一采用640个区间，相对容差$10^{-8}$，温度绝对容差$10^{-8}$~℃，含水率及累计水分损失绝对容差$10^{-10}$~kg/kg。前4 h最大步长15~s，此后600~s，实际步长由BDF自适应选择。保形径向重建不产生超出两端节点值范围的极值，终点按全部节点的未舍入状态判定；空间和时间分辨率依据见第\ref{sec:checks}节。
 
-求解步长与输出间隔分别设置，显示数值统一保留四位小数。完整时间范围、整秒终点及移动域空值规则见附录\ref{app:outputs}。
+求解步长与输出间隔分别设置，显示数值统一保留四位小数；完整时空结果和整秒终点保存在电子支撑材料\texttt{results/}目录中。

@@ -1,184 +1,60 @@
 \FloatBarrier
 \subsection{模型检验}\label{sec:checks}
-数值检验分别检查守恒离散、移动域尺度、空间与时间分辨率以及终点事件定位，内部一致性检验则核对通量、权重和状态导数。表\ref{tab:verification-map}给出各项证据的参照对象，以下沿用现有算例和加密结果。
-
-\begin{table}[htbp]\centering\small
-\caption{验证项目、参照对象与可识别的错误}\label{tab:verification-map}
-\begin{tabularx}{\linewidth}{lXX}
-\toprule
-检验 & 参照对象 & 主要识别问题\\
-\midrule
-固定域解析模态 & Robin边界Bessel解与精确越阈时间 & 柱坐标算子、中心和表面符号、事件定位\\
-移动域非均匀模态 & 变半径零通量解析解 & 几何因子是否真正随时间更新\\
-几何因子对照算例 & 只把$R(t)^{-2}$冻结为$R_0^{-2}$ & 固定几何因子对求解误差的影响\\
-水分收支 & 离散均值与累计边界损失 & 面通量、积分权重和干基归一化\\
-雅可比方向差分 & 实际右端的中心差分 & 状态及交叉导数是否一致\\
-网格与容差复验 & 同一工况下更细离散结果 & 本题场与终点对数值设置的敏感性\\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-各项检验分别考察水分收支、空间分布、几何因子与数值分辨率，联合评估离散和终点计算的稳定性。
+题目要求给出径向温湿分布和全域达标时间，因此，本文将检验重点放在水分收支、收缩域处理、网格分辨率和输入变化对结果的影响。
 
 \subsubsection{守恒性验证}
-检验目标是确认固定域与收缩域的面通量及积分权重保持水分收支一致。在空间均匀干固体密度条件下，径向平均为$\overline C=2\int_0^1xC\,dx$。对水分方程积分并代入表面条件，得到式\eqref{eq:balance}；累计归一化损失$\Lambda$从零开始与状态同步积分，平衡残差记为$\varepsilon_M$。
-
+在空间均匀干固体密度条件下，径向平均为$\overline C=2\int_0^1xC\,dx$。对水分方程积分并代入表面条件，可得：
 \begin{equation}\label{eq:balance}
-\frac{d\overline C}{dt}=-\frac{2h_m}{R(t)}(C_s-C_e),\qquad
-\dot\Lambda=\frac{2h_m}{R(t)}(C_s-C_e),\qquad
-\varepsilon_M=\overline C+\Lambda-2.55.
-\end{equation}
-
-问题一、三按1~s、问题四按60 s检查，包含初值、终点及全部求解节点。最大残差分别为$4.44\times\nobreak10^{-15}$、$4.88\times\nobreak10^{-15}$、$7.11\times\nobreak10^{-15}$，均为$10^{-15}$量级。平均值与累计损失由相同面通量构造，结果表明离散通量、积分权重和归一化水分收支相互一致。
-
-\subsubsection{移动域解析基准}
-为检验变化半径下的扩散速度，采用具有非均匀初值的零通量Bessel模态。取$R(t)=R_0(1-\gamma t)$，$R_0=0.02$~m、$\gamma=1/7200$~s$^{-1}$、$0\leq t\leq3600$~s，半径由0.02 m缩至0.01~m。扩散系数固定为$D_0=10^{-8}$~m$^2$/s，取$J_1(\lambda)=0$的第一正根$\lambda=3.8317059702$，解析解为式\eqref{eq:moving-bessel}。
-
-\begin{equation}\label{eq:moving-bessel}
 \begin{aligned}
-C(x,t)&=1+0.3J_0(\lambda x)
- \exp\left[-\lambda^2D_0 I(t)\right],\\
-I(t)&=\int_0^t\frac{\mathrm ds}{R(s)^2}
- =\frac{t}{R_0^2(1-\gamma t)}.
+\frac{d\overline C}{dt}&=-\frac{2h_m}{R(t)}(C_s-C_e),\\
+\dot\Lambda&=\frac{2h_m}{R(t)}(C_s-C_e),\\
+\varepsilon_M&=\overline C+\Lambda-2.55.
 \end{aligned}
 \end{equation}
 
-由$J'_0(z)=-J_1(z)$可知，两端满足零梯度；Bessel特征方程保证空间模态满足径向扩散关系。衰减时间尺度由$I(t)$给出，因而该解可以识别$R(t)^{-2}$对扩散速度的影响。算例调用本文采用的水分离散算子，将物性、半径与边界设置为上述解析条件。
+问题一、三和四的最大水分收支残差分别为$4.44\times\nobreak10^{-15}$、$4.88\times\nobreak10^{-15}$和$7.11\times\nobreak10^{-15}$，均处于机器舍入量级，说明离散通量与全域水分变化一致。
 
-相对容差取$10^{-11}$、最大时间步14.0625~s，在0至3600 s的129个等间隔时刻及全部网格节点比较。误差指标为含水率最大绝对差，判据为$10^{-5}$~kg/kg，结果见表\ref{tab:moving-benchmark}。
+\subsubsection{收缩域解析检验}
+为检查问题四中随时间变化的几何尺度，采用零通量Bessel模态作为解析参照。令$R(t)=R_0(1-\gamma t)$，取$R_0=0.02$~m、$\gamma=1/7200$~s$^{-1}$和$D_0=10^{-8}$~m$^2$/s，在0至3600~s比较解析解与数值解，结果见表\ref{tab:moving-benchmark}。
 
 \begin{table}[htbp]\centering\small
-\caption{移动域解析算例的空间加密与几何因子对照}\label{tab:moving-benchmark}
-\begin{tabular}{lrr}
+\caption{收缩域解析算例的网格比较}\label{tab:moving-benchmark}
+\begin{tabular}{rr}
 \toprule
-算子 & 径向区间数 & 最大解析对比误差/(kg/kg)\\
+径向区间数 & 最大含水率误差/(kg/kg)\\
 \midrule
-随时间更新$R(t)^{-2}$ & 40 & $2.05124\times\nobreak10^{-4}$\\
-随时间更新$R(t)^{-2}$ & 80 & $5.17059\times\nobreak10^{-5}$\\
-随时间更新$R(t)^{-2}$ & 160 & $1.29592\times\nobreak10^{-5}$\\
-随时间更新$R(t)^{-2}$ & 320 & $3.24227\times\nobreak10^{-6}$\\
-随时间更新$R(t)^{-2}$ & 640 & $8.10753\times\nobreak10^{-7}$\\
-故意冻结为$R_0^{-2}$ & 640 & $5.86815\times\nobreak10^{-2}$\\
+160 & $1.29592\times\nobreak10^{-5}$\\
+320 & $3.24227\times\nobreak10^{-6}$\\
+640 & $8.10753\times\nobreak10^{-7}$\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-640区间时，最大解析误差为$8.10753\times\nobreak10^{-7}$~kg/kg，满足判据。每次将区间数加倍，误差约降为原来的四分之一，呈现接近二阶的收敛趋势。变化半径与非均匀初值共同检验了移动域中的扩散尺度。
+网格每加密一倍，误差约降为原来的四分之一；640区间时误差低于$10^{-5}$~kg/kg，说明随体坐标下的扩散尺度处理满足本文精度要求。
 
-\subsubsection{错误算子负对照}
-为确认解析基准能够识别几何处理错误，保持相同的移动半径、初值、扩散系数和零通量边界，故意将方程中的$R(t)^{-2}$固定为$R_0^{-2}$。表\ref{tab:moving-benchmark}末行的误差增至$5.86815\times\nobreak10^{-2}$~kg/kg，明显超过同一$10^{-5}$判据，负对照未通过。
-
-冻结几何因子后仍保持离散水量，却给出错误的模态衰减速度。该对照表明，守恒残差和空间分布误差检查的是不同性质，二者联合才能识别这一类移动域错误。正确几何下，平均含水率相对初始离散加权均值的漂移不超过$6.66\times\nobreak10^{-16}$；此值衡量同一求积规则下的前后守恒，与初值相对连续均值1的求积误差分别考察。
-
-\subsubsection{空间网格收敛}\label{sub:errors}\label{sub:convergence}
-采用160、320、640区间加密，检验场分布和事件时间对空间设置的敏感程度。共同采样集合$\mathcal S$中，问题一覆盖前1800 s的逐秒点，问题二覆盖共同终端前全过程逐秒点，问题三、四覆盖逐分钟点并加入共同终端；收缩域比较域内实际位置与当前表面。误差定义为式\eqref{eq:errors}。
-
+\subsubsection{网格与时间稳定性}\label{sub:errors}\label{sub:convergence}
+采用160、320、640个径向区间逐级加密，并比较共同输出时刻的最大场差及问题三、四的越阈时间。误差定义为：
 \begin{equation}\label{eq:errors}
-E_\theta=\max_{\mathcal S}|\theta_N-\theta_{2N}|,\quad
-E_C=\max_{\mathcal S}|C_N-C_{2N}|,\quad
-E_t=\frac{|t_{*,N}-t_{*,2N}|}{t_{*,2N}},
+E_\theta=\max|\theta_N-\theta_{2N}|,\quad
+E_C=\max|C_N-C_{2N}|,\quad
+E_t=\frac{|t_{*,N}-t_{*,2N}|}{t_{*,2N}}.
 \end{equation}
-
-误差判据取$E_\theta<0.005$~℃、$E_C<5\times\nobreak10^{-5}$~kg/kg，有终点事件时另要求$E_t<10^{-3}$。相邻网格之差衡量数值设置的影响，比较结果见表\ref{tab:grid}。
-
-\begin{table}[htbp]\centering\small
-\caption{三网格比较；末三列为320与640区间之差}\label{tab:grid}
-\begin{tabular}{crrrr}
-\toprule
-问题 & $E_C(160,320)$ & $E_C(320,640)$ & $E_\theta$/℃ & $E_t$\\
-\midrule
-一 & $5.864\times\nobreak10^{-5}$ & $1.468\times\nobreak10^{-5}$ & $8.309\times\nobreak10^{-6}$ & ---\\
-二 & $5.130\times\nobreak10^{-5}$ & $1.284\times\nobreak10^{-5}$ & $1.444\times\nobreak10^{-5}$ & ---\\
-三 & $4.423\times\nobreak10^{-5}$ & $1.106\times\nobreak10^{-5}$ & $1.444\times\nobreak10^{-5}$ & $2.434\times\nobreak10^{-5}$\\
-四 & $1.896\times\nobreak10^{-4}$ & $4.742\times\nobreak10^{-5}$ & $1.687\times\nobreak10^{-5}$ & $1.511\times\nobreak10^{-5}$\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-160至320区间时，问题一、二、四的含水率差超过判据；320至640区间时，全部指标满足要求。含水率差约降为前一次的四分之一，呈现接近二阶的空间收敛趋势，因此四问统一采用640区间。
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=\linewidth]{figures/process_q3_convergence.pdf}
-\caption{相邻网格的最大场差，$N$为细网格区间数；横线为误差判据，事件与时间精度结果见表\ref{tab:grid}、\ref{tab:time}。}\label{fig:q3-convergence}
+\caption{相邻网格的最大场差与误差判据}\label{fig:q3-convergence}
 \end{figure}
 
-图\ref{fig:q3-convergence}中，四问含水率差随加密下降，最终温度差均远低于判据。收缩条件下问题四的含水率差最大，但最终仍满足统一要求，说明采用共同网格时已覆盖较敏感的移动域工况。
-
-\subsubsection{时间步长收敛}
-时间检验同时采用可分离空间误差的解析算例与实际四问的容差复验。前者固定160区间均匀网格，相对容差依次为$10^{-3}$、$10^{-5}$、$10^{-7}$，最大时间步依次为450、225、112.5~s，以同一半离散矩阵$L_N$的指数解$\exp[D_0I(t)L_N]C(0)$为参照。
-
-最大时间误差依次为$1.60038\times\nobreak10^{-3}$、$2.56224\times\nobreak10^{-5}$、$2.65945\times\nobreak10^{-7}$~kg/kg，逐级下降，最细设置满足$5\times\nobreak10^{-6}$的判据。该设置与连续Bessel解的总误差为$6.37797\times\nobreak10^{-6}$，两种比较区分了时间积分误差与固定空间离散误差。
-
-在四问实际640区间网格上，将相对容差由$10^{-8}$收紧至$10^{-9}$，绝对容差相应收紧，检验自适应BDF设置的稳定性。最大温度差不超过$1.843\times\nobreak10^{-5}$~℃、最大含水率差不超过$1.589\times\nobreak10^{-7}$~kg/kg，见表\ref{tab:time}。
-
-\begin{table}[htbp]\centering\small
-\caption{最终网格上两组时间容差的差异}\label{tab:time}
-\begin{tabular}{crrr}
-\toprule
-问题 & 最大温度差/℃ & 最大含水率差/(kg/kg) & 事件相对差\\
-\midrule
-一 & $8.635\times\nobreak10^{-6}$ & $1.045\times\nobreak10^{-7}$ & ---\\
-二 & $1.476\times\nobreak10^{-5}$ & $1.295\times\nobreak10^{-7}$ & ---\\
-三 & $1.476\times\nobreak10^{-5}$ & $1.230\times\nobreak10^{-7}$ & $1.749\times\nobreak10^{-9}$\\
-四 & $1.842\times\nobreak10^{-5}$ & $1.589\times\nobreak10^{-7}$ & $3.510\times\nobreak10^{-9}$\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-四问时间复验均满足场差判据。与表\ref{tab:grid}比较，含水率及终点对时间设置的敏感性小于对空间加密的敏感性；温度的两类差异均远低于0.005~℃。因此现有时间容差足以支撑最终空间网格上的计算。
-
-\subsubsection{事件时间稳定性}
-通过有精确越阈时间的固定域算例，检验事件函数、表面通量符号与零点定位。常扩散系数取$d_0=10^{-5}$~m$^2$/s，半径0.02~m，$C_e=0.05$、$h_m=d_0/R$；令$\beta$为$\beta J_1(\beta)=J_0(\beta)$的第一正根，式\eqref{eq:bessel}同时满足中心对称与Robin表面条件。
-
-\begin{equation}\label{eq:bessel}
-C(r,t)=0.05+0.20J_0\left(\beta\frac rR\right)
-       \exp\left(-\frac{d_0\beta^2}{R^2}t\right),\qquad
-t_{\rm exact}=\frac{R^2\log2}{d_0\beta^2}.
-\end{equation}
-
-采用160区间时，精确越阈时间17.581493358~s，数值事件时间17.581482896~s，绝对差约$1.05\times\nobreak10^{-5}$~s。该算例表明径向离散、边界处理与事件求根在已知解条件下相互一致。
-
-四问实际计算中，问题三、四在320与640区间下的事件时间分别相差约5.04~s、2.78~s，相对差分别为$2.434\times\nobreak10^{-5}$、$1.511\times\nobreak10^{-5}$，均低于$2.5\times\nobreak10^{-5}$；最终网格收紧时间容差后的相对差分别为$1.749\times\nobreak10^{-9}$、$3.510\times\nobreak10^{-9}$。终点按严格不等式输出至整秒，加密比较表明其具有良好的数值稳定性。
-
-\subsubsection{极限状态与导数一致性}
-取零传质系数与均匀初值，离散右端为零，封闭均匀场保持不变。这一极限算例核对了零驱动力时的方程响应，与守恒及解析模态检验共同覆盖均匀和非均匀状态。
-
-为检查隐式积分使用的解析雅可比，以方向差分比较$J(y)p$和$[F(y+\varepsilon p)-F(y-\varepsilon p)]/(2\varepsilon)$。四问在常湿、低湿、均匀及加密网格下共比较16组块导数，最大相对差约$3.78\times\nobreak10^{-10}$，表明状态导数和热湿交叉导数与实际方程右端一致。
+由图\ref{fig:q3-convergence}可见，320至640区间时四问均满足$E_\theta<0.005$~℃和$E_C<5\times\nobreak10^{-5}$~kg/kg。问题四的含水率差最大，为$4.742\times\nobreak10^{-5}$~kg/kg；问题三、四的越阈时间分别变化5.04~s和2.78~s，均不足最终整秒时间的$2.5\times\nobreak10^{-5}$。在640区间上进一步收紧BDF容差，最大温度差不超过$1.843\times\nobreak10^{-5}$~℃，最大含水率差不超过$1.589\times\nobreak10^{-7}$~kg/kg。因此四问统一采用640区间，时间积分误差相对空间误差可以忽略。
 
 \subsubsection{输入条件的灵敏度分析}\label{sub:sensitivity}
-采用已计算的单因素情景，评估尾段边界与表面传质条件对完成时间的影响。末1 h共61条记录，温度均值49.998934~℃、样本标准差0.154353~℃，水分记录均值0.04998754、样本标准差0.00015013~kg/kg，均值接近名义尾段环境。
-
-分别改变末值或末1 h均值延拓、尾段温度$\pm0.5$~℃、尾段有效平衡含水率$\pm0.001$~kg/kg以及传质系数$\pm10\%$。环境情景自4 h后起作用，传质系数在全过程改变；每次只改变一项，时间结果见表\ref{tab:sensitivity}。
-
-\begin{table}[htbp]\centering\small
-\caption{各单因素情景下的全域越阈时间，单位：h}\label{tab:sensitivity}
-\begin{tabular}{lrr}
-\toprule
-情景 & 问题三 & 问题四\\
-\midrule
-名义环境及传质系数 & 57.4728 & 51.0908\\
-4 h后采用末值 & 57.1698 & 50.8245\\
-4 h后采用末1 h均值 & 57.4745 & 51.0923\\
-尾段温度降低0.5~℃ & 58.3959 & 51.9004\\
-尾段温度升高0.5~℃ & 56.5700 & 50.2989\\
-尾段有效平衡含水率降低0.001 & 57.4532 & 51.0691\\
-尾段有效平衡含水率升高0.001 & 57.4931 & 51.1137\\
-全过程传质系数降低10\% & 58.2086 & 51.3820\\
-全过程传质系数提高10\% & 56.8954 & 50.8700\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-尾段温度降低0.5~℃使问题三、四时间分别增加1.6062\%、1.5846\%，升高时分别减少1.5707\%、1.5500\%；传质系数降低10\%时分别增加1.2804\%、0.5699\%，提高时分别减少1.0046\%、0.4323\%。升温提高扩散率，增强传质则加快表面交换，两类改变均缩短所需时间。
+由于附件1只覆盖前4~h，本文考察尾段温度、有效平衡含水率和传质系数变化对完成时间的影响，结果见图\ref{fig:q4-sensitivity}。每次只改变一项，环境扰动自4~h后起作用，传质系数则在全过程改变。
 
 \begin{figure}[htbp]\centering
 \includegraphics[width=\linewidth]{figures/result_q4_sensitivity.pdf}
-\caption{各单因素情景相对本问名义时间的变化，圆点与方块分别表示问题三和问题四。}\label{fig:q4-sensitivity}
+\caption{问题三、四烘干时长的单因素敏感性}\label{fig:q4-sensitivity}
 \end{figure}
 
-图\ref{fig:q4-sensitivity}表明，在当前模型和给定扰动范围内，边界温度对完成时间的影响最大，传质系数次之。末1 h均值延拓的影响约为0.003\%，末值延拓约缩短0.52\%，两种延拓与名义情景的差异均小于0.6\%，这两种环境延拓方式的影响很小。该排序对应所列幅度和作用时段的完成时间变化。
+尾段温度降低0.5~℃时，问题三、四的烘干时间分别增加1.6062\%和1.5846\%；传质系数降低10\%时分别增加1.2804\%和0.5699\%。最后1~h均值延拓与名义情景的差异约为0.003\%，表明尾段边界取值不会改变问题四早于问题三达标的结论。在所设扰动范围内，完成时间对尾段温度最敏感，其次为传质系数。
 
-所有成对情景中，问题四均早于问题三达到阈值，说明两问时间排序在已考察输入变化下保持稳定。名义尾段环境并未主导两问之间的时间差，收缩对照仍需结合第\ref{sec:q4}节的同物性比较解释。
-
-\subsubsection{验证结论}
-上述守恒审计、解析基准、错误算子负对照及空间—时间双重加密检验，从相互独立的角度验证了离散格式、移动域处理和终点事件定位的正确性与稳定性，为各问计算结果的可靠性提供了完整证据。各项检验共享所用离散程序，分别针对整体收支、空间分布、几何尺度、分辨率和事件定位；上述不同角度构成相互补充的数值证据。结论针对所用方程、算例及数值设置，模型预测范围见第\ref{sec:evaluation}章。
+综上，水分守恒、收缩域解析比较及网格与时间复验均支持当前数值设置；灵敏度分析表明两问的时间排序对合理输入扰动保持稳定。上述检验主要说明数值结果的内部一致性，实际预测精度仍需独立观测数据验证。

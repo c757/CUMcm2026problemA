@@ -3,55 +3,218 @@ meta:
   figureType: workflow
   theme: academic
   palette: ieee-bw
-  layout: horizontal
-  canvas: 800x248
+  layout: vertical
+  canvas: 340x494
   font:
-    primary: 'Times New Roman, Noto Serif CJK SC'
-    cjk: 'Times New Roman, SimSun, Noto Serif CJK SC'
-    formula: 'Latin Modern, Times New Roman, Noto Serif CJK SC'
-  print: {target: cn-thesis}
+    primary: Times New Roman, Noto Serif CJK SC
+    cjk: Noto Serif CJK SC, SimSun, Times New Roman
+    formula: Latin Modern, Times New Roman
+  print:
+    target: cn-thesis
+    widthPt: 167.8
+    minPt: 9
   title: 模型总体框架
-  description: 四问采用共同热湿模型与数值框架，输入、求解、输出及检验形成闭环。
+  description: 保持附件、插值、模型、空间离散、时间积分、四问结果和检验的原有顺序；黑白纵向布局。
 nodes:
   - id: data
-    label: "附件数据\n环境与半径"
-    type: process
-    style: {fillColor: "#FAFAFA", fontColor: "#171717", strokeColor: "#454545", strokeWidth: 1.5}
-    bounds: {x: 20, y: 20, width: 160, height: 66}
+    label: 读取环境与半径数据
+    type: terminal
+    style:
+      fillColor: '#FFFFFF'
+      fontColor: '#202020'
+      strokeColor: '#202020'
+      strokeWidth: 2
+      fontSize: 20
+      fontFamily: Noto Serif CJK SC
+    bounds:
+      x: 20
+      'y': 10
+      width: 300
+      height: 40
   - id: interp
-    label: "参数插值\n统一单位"
+    label: 参数插值与单位转换
     type: process
-    style: {fillColor: "#FAFAFA", fontColor: "#171717", strokeColor: "#454545", strokeWidth: 1.5}
-    bounds: {x: 220, y: 20, width: 160, height: 66}
+    style:
+      fillColor: '#FFFFFF'
+      fontColor: '#202020'
+      strokeColor: '#202020'
+      strokeWidth: 2
+      fontSize: 20
+      fontFamily: Noto Serif CJK SC
+    bounds:
+      x: 20
+      'y': 82
+      width: 300
+      height: 40
   - id: model
-    label: "热湿耦合模型\n物性与表面交换"
+    label: 建立热湿耦合模型
     type: process
-    style: {fillColor: "#FAFAFA", fontColor: "#171717", strokeColor: "#454545", strokeWidth: 1.5}
-    bounds: {x: 420, y: 20, width: 160, height: 66}
+    style:
+      fillColor: '#FFFFFF'
+      fontColor: '#202020'
+      strokeColor: '#202020'
+      strokeWidth: 2
+      fontSize: 20
+      fontFamily: Noto Serif CJK SC
+    bounds:
+      x: 20
+      'y': 154
+      width: 300
+      height: 40
   - id: space
-    label: "守恒有限体积\n径向空间离散"
+    label: 守恒有限体积离散
     type: process
-    style: {fillColor: "#FAFAFA", fontColor: "#171717", strokeColor: "#454545", strokeWidth: 1.5}
-    bounds: {x: 620, y: 20, width: 160, height: 66}
+    style:
+      fillColor: '#FFFFFF'
+      fontColor: '#202020'
+      strokeColor: '#202020'
+      strokeWidth: 2
+      fontSize: 20
+      fontFamily: Noto Serif CJK SC
+    bounds:
+      x: 20
+      'y': 226
+      width: 300
+      height: 40
   - id: time
-    label: "隐式BDF积分\n状态与事件"
+    label: 隐式BDF时间积分
     type: process
-    style: {fillColor: "#FAFAFA", fontColor: "#171717", strokeColor: "#454545", strokeWidth: 1.5}
-    bounds: {x: 620, y: 152, width: 160, height: 66}
+    style:
+      fillColor: '#FFFFFF'
+      fontColor: '#202020'
+      strokeColor: '#202020'
+      strokeWidth: 2
+      fontSize: 20
+      fontFamily: Noto Serif CJK SC
+    bounds:
+      x: 20
+      'y': 298
+      width: 300
+      height: 40
   - id: results
-    label: "四问结果\n温湿场与烘干时间"
+    label: 输出温湿场与烘干时间
     type: process
-    style: {fillColor: "#FAFAFA", fontColor: "#171717", strokeColor: "#454545", strokeWidth: 1.5}
-    bounds: {x: 420, y: 152, width: 160, height: 66}
+    style:
+      fillColor: '#FFFFFF'
+      fontColor: '#202020'
+      strokeColor: '#202020'
+      strokeWidth: 2
+      fontSize: 20
+      fontFamily: Noto Serif CJK SC
+    bounds:
+      x: 20
+      'y': 370
+      width: 300
+      height: 40
   - id: tests
-    label: "模型检验\n守恒、解析与加密"
-    type: process
-    style: {fillColor: "#FAFAFA", fontColor: "#171717", strokeColor: "#454545", strokeWidth: 1.5}
-    bounds: {x: 220, y: 152, width: 160, height: 66}
+    label: 完成守恒、解析与加密检验
+    type: terminal
+    style:
+      fillColor: '#FFFFFF'
+      fontColor: '#202020'
+      strokeColor: '#202020'
+      strokeWidth: 2
+      fontSize: 20
+      fontFamily: Noto Serif CJK SC
+    bounds:
+      x: 20
+      'y': 442
+      width: 300
+      height: 40
 edges:
-  - {from: data, to: interp, type: primary}
-  - {from: interp, to: model, type: primary}
-  - {from: model, to: space, type: primary}
-  - {from: space, to: time, type: primary}
-  - {from: time, to: results, type: primary}
-  - {from: results, to: tests, type: primary}
+  - from: data
+    to: interp
+    type: primary
+    style:
+      strokeColor: '#202020'
+      strokeWidth: 2
+      dashed: false
+      endArrow: open
+      endFill: false
+      endSize: 8
+      exitX: 0.5
+      exitY: 1
+      entryX: 0.5
+      entryY: 0
+      fontSize: 20
+      fontColor: '#202020'
+  - from: interp
+    to: model
+    type: primary
+    style:
+      strokeColor: '#202020'
+      strokeWidth: 2
+      dashed: false
+      endArrow: open
+      endFill: false
+      endSize: 8
+      exitX: 0.5
+      exitY: 1
+      entryX: 0.5
+      entryY: 0
+      fontSize: 20
+      fontColor: '#202020'
+  - from: model
+    to: space
+    type: primary
+    style:
+      strokeColor: '#202020'
+      strokeWidth: 2
+      dashed: false
+      endArrow: open
+      endFill: false
+      endSize: 8
+      exitX: 0.5
+      exitY: 1
+      entryX: 0.5
+      entryY: 0
+      fontSize: 20
+      fontColor: '#202020'
+  - from: space
+    to: time
+    type: primary
+    style:
+      strokeColor: '#202020'
+      strokeWidth: 2
+      dashed: false
+      endArrow: open
+      endFill: false
+      endSize: 8
+      exitX: 0.5
+      exitY: 1
+      entryX: 0.5
+      entryY: 0
+      fontSize: 20
+      fontColor: '#202020'
+  - from: time
+    to: results
+    type: primary
+    style:
+      strokeColor: '#202020'
+      strokeWidth: 2
+      dashed: false
+      endArrow: open
+      endFill: false
+      endSize: 8
+      exitX: 0.5
+      exitY: 1
+      entryX: 0.5
+      entryY: 0
+      fontSize: 20
+      fontColor: '#202020'
+  - from: results
+    to: tests
+    type: primary
+    style:
+      strokeColor: '#202020'
+      strokeWidth: 2
+      dashed: false
+      endArrow: open
+      endFill: false
+      endSize: 8
+      exitX: 0.5
+      exitY: 1
+      entryX: 0.5
+      entryY: 0
+      fontSize: 20
+      fontColor: '#202020'

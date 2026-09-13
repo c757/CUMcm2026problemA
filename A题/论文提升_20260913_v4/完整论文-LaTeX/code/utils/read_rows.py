@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""无隐式表头推断地读取 XLSX，并可断言数据行数。"""
 
 from pathlib import Path
 

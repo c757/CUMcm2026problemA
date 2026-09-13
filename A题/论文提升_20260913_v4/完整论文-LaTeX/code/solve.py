@@ -1,8 +1,3 @@
-"""Nonlinear radial heat/moisture diffusion, SI units throughout.
-
-Run from the project directory: python3 solve.py --smoke
-All assumptions and boundary extrapolations are defined in the model report.
-"""
 from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
@@ -77,7 +72,6 @@ class Grid:
         return np.diff(flux)/(radius**2*self.w*capacity)
 
     def jac_block(self, u, a, da, radius, transfer, capacity=1., same=False):
-        """Derivative of conservative fluxes with respect to one state field."""
         m = self.n+1
         a = np.broadcast_to(a, u.shape)
         da = np.broadcast_to(da, u.shape)
@@ -208,12 +202,6 @@ class Run:
         return np.array(temperatures),np.array(moistures)
 
     def summary(self, sample_step_s=None, chunk_size=1024):
-        """Diagnostics on an explicit sample grid, never continuous extrema.
-
-        Default: 250 uniformly spaced times including both endpoints.
-        A positive sample_step_s uses 0, step, ..., plus the exact endpoint.
-        All radial solver nodes participate; chunking bounds memory use.
-        """
         if chunk_size < 1 or int(chunk_size) != chunk_size:
             raise ValueError('chunk_size must be a positive integer')
         if sample_step_s is None:
@@ -332,4 +320,3 @@ if __name__=='__main__':
     args=parser.parse_args()
     if args.smoke: smoke()
     else: parser.error('Use --smoke, or run the complete pipeline with run_all.py')
-

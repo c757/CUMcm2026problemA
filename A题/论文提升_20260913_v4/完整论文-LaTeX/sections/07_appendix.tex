@@ -1,5 +1,5 @@
 \section{支撑材料文件清单}\label{app:materials}
-表\ref{tab:catalog}列出支撑材料文件及用途。附录B给出七个脚本、五个辅助模块及依赖清单，与电子支撑材料中的对应源文件一致。运行时保留附件、结果模板和模块的相对目录。
+表\ref{tab:catalog}列出支撑材料文件及用途。附录B给出七个脚本、五个辅助模块及依赖清单。
 
 \begin{table}[htbp]\centering\small
 \caption{电子支撑材料目录}\label{tab:catalog}
@@ -8,7 +8,7 @@
 文件或目录 & 内容\\
 \midrule
 原题及附件目录 & 题目PDF、环境、半径及四个原始结果模板\\
-\texttt{solve.py} & 物性、网格、通量、雅可比、积分、事件与小例检验\\
+\texttt{solve.py} & 物性、网格、通量、雅可比、积分、事件与小算例检验\\
 \texttt{run\_all.py} & 网格和时间复验、结果表、场数组及情景分析\\
 \texttt{make\_figures.py} & 从真实结果生成14组矢量和位图\\
 \texttt{verify\_moving\_domain.py} & 移动域解析模态、时空加密、几何因子对照与守恒检验\\
@@ -17,7 +17,7 @@
 \texttt{test\_sync.py} & 采样统计与600 s导出的短程检查\\
 \texttt{utils/} & 全量读表、绘图风格、图表自检、导出与环境记录\\
 \texttt{requirements.txt} & 原计算使用的Python包版本\\
-\texttt{results/} & 四个XLSX、六张题表、过程数组、诊断与参数摘要\\
+\texttt{results/} & 四个XLSX、六张题表、全过程时空输出、过程数组、域外空值规则、诊断与参数摘要\\
 \texttt{figures/} & 原始输入、运行过程和结果图的PDF、SVG、PNG\\
 新增示意图目录 & 三张框架、流程与随体坐标图的可编辑源文件和矢量插入版本\\
 完整论文LaTeX目录 & 主文稿、章节、表格、图形及完整代码副本\\
@@ -38,62 +38,31 @@ python3 -B verify_moving_domain.py
 python3 -B verify_moving_domain.py --mutant-only
 \end{Verbatim}
 
-短程检查覆盖600~s；最后一条只计算冻结几何因子的对照，其误差应超过正常算例的判据。正式问题二文件仍按全过程逐秒输出。
-
-论文在LaTeX工程内以XeLaTeX编译两遍，宏包与字体要求见支撑材料说明。支撑包含全部程序、结果、图形、LaTeX源码及AI使用详情，主论文PDF单独提供。支撑材料\texttt{assets/}保留文泉驿字体及其许可证；LaTeX使用Noto CJK字体，编译时按同名字体准备。
-
 \section{完整可运行源代码}
 
 \subsection{核心求解与诊断}
-\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/solve.py}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={},frame=single,framerule=0.4pt,framesep=2mm]{code/solve.py}
 \subsection{全流程计算与结果导出}
-\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/run_all.py}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={},frame=single,framerule=0.4pt,framesep=2mm]{code/run_all.py}
 \subsection{真实结果可视化}
-\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/make_figures.py}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={},frame=single,framerule=0.4pt,framesep=2mm]{code/make_figures.py}
 \subsection{移动域解析基准与几何因子对照}
-\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/verify_moving_domain.py}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={},frame=single,framerule=0.4pt,framesep=2mm]{code/verify_moving_domain.py}
 \subsection{全过程逐秒工作簿导出与核对}
-\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/export_result2_full.py}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={},frame=single,framerule=0.4pt,framesep=2mm]{code/export_result2_full.py}
 \subsection{完整计算入口}
-\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/reproduce.py}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={},frame=single,framerule=0.4pt,framesep=2mm]{code/reproduce.py}
 \subsection{采样与导出检查}
-\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/test_sync.py}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={},frame=single,framerule=0.4pt,framesep=2mm]{code/test_sync.py}
 \subsection{完整附件读取}
-\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/utils/read_rows.py}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={},frame=single,framerule=0.4pt,framesep=2mm]{code/utils/read_rows.py}
 \subsection{图表结构与布局检查}
-\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/utils/plot_style.py}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={},frame=single,framerule=0.4pt,framesep=2mm]{code/utils/plot_style.py}
 \subsection{统一科研绘图风格}
-\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/utils/setup_style.py}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={},frame=single,framerule=0.4pt,framesep=2mm]{code/utils/setup_style.py}
 \subsection{多格式图表导出}
-\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/utils/export_figure.py}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={},frame=single,framerule=0.4pt,framesep=2mm]{code/utils/export_figure.py}
 \subsection{输入与运行环境记录}
-\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={}]{code/utils/repro_manifest.py}
+\VerbatimInput[fontsize=\scriptsize,breaklines,breakanywhere,breaksymbolleft={},breaksymbolright={},frame=single,framerule=0.4pt,framesep=2mm]{code/utils/repro_manifest.py}
 \subsection{Python依赖版本}
-\VerbatimInput[fontsize=\small,breaklines]{code/requirements.txt}
-
-\clearpage
-\section{大型结果表与补充材料}\label{app:outputs}
-\subsection{全过程数据的范围与读取}
-表\ref{tab:full-output}列出四个工作簿的输出范围，数据行数不含表头。大型结果保存在电子支撑材料\texttt{results/}中，避免在纸面重复逐秒数据。题目要求的六张摘录表均保留在四问正文，原始数值表同时保存为\texttt{table1.csv}至\texttt{table6.csv}。
-\begin{table}[htbp]\centering\small
-\caption{完整结果文件的时间范围与径向输出}\label{tab:full-output}
-\begin{tabularx}{\linewidth}{lrrX}
-\toprule
-文件 & 时间范围/s & 每表数据行 & 径向位置/cm\\
-\midrule
-\texttt{result1.xlsx} & 1--1800 & 1800 & 0、0.1、\ldots、2.0；温度与水分两表\\
-\texttt{result2.xlsx} & 1--206902 & 206902 & 0、0.1、\ldots、2.0；温度与水分两表\\
-\texttt{result3.xlsx} & 60--206902 & 3449 & 0、0.1、\ldots、2.0；含水率\\
-\texttt{result4.xlsx} & 60--183927 & 3066 & 0、0.1、\ldots、1.9及实际表面；含水率\\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-问题一、二按1 s间隔输出；问题二覆盖整个烘干过程，正文题表仍只列0.5至3.0~h。问题三、四按60 s间隔输出，并分别补入严格整秒终点206902 s和183927~s。四位小数仅用于展示，终点判断采用未舍入数值。
-
-固定域按物理半径采样。问题四的实际表面列对应$R(t)$，当固定位置$r>R(t)$时留空，题表用破折号表示；工作簿4共有20099个此类域外位置。固定位置与材料轨迹$r=xR(t)$有不同含义，应按所需对象读取。
-
-\subsection{补充轨迹与验证数据}
-\texttt{results/}中的过程数组与\path{q1_history.csv}、\path{q3_history.csv}、\path{q4_history.csv}保留未舍入场及过程指标。网格、时间和敏感性比较分别见\path{grid_comparison.csv}、\path{time_comparison.csv}、\path{sensitivity.csv}，移动域基准详见\path{moving_domain_benchmark.json}与\path{moving_domain_convergence.csv}。
-
-\texttt{figures/}保留14组原始输入、过程及结果图的PDF、SVG和PNG文件；正文选用其中12幅回答四问与数值检验，另增三张解释共同框架、求解流程和随体坐标的示意图。完整源程序已列于附录B，运行条件与入口见附录\ref{app:materials}。
+\VerbatimInput[fontsize=\small,breaklines,frame=single,framerule=0.4pt,framesep=2mm]{code/requirements.txt}

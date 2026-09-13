@@ -1,4 +1,3 @@
-"""Generate evidence-led figures from completed, unrounded result files."""
 from pathlib import Path
 import json
 import logging
@@ -212,7 +211,6 @@ def make_figures():
     print(json.dumps({'figures':len(list(OUT.glob('*.svg'))),'format':['svg','png','pdf'],'dpi':300}))
 
 if __name__=='__main__':make_figures()
-
 
 
 

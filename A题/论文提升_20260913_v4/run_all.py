@@ -1,4 +1,3 @@
-"""Reproduce numerical tables, convergence, sensitivity and figures."""
 from pathlib import Path
 import argparse
 import copy
@@ -200,4 +199,3 @@ def main():
         subprocess.run(command,check=True,env=env)
 
 if __name__=='__main__':main()
-

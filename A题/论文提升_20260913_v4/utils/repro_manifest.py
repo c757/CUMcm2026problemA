@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""记录计算环境与输入输出，避免覆盖工具资源。"""
 
 import argparse
 import hashlib
@@ -127,4 +126,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

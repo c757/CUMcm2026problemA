@@ -1,8 +1,3 @@
-"""Moving Neumann/Bessel benchmark of the unchanged production radial operator.
-
-No output files unless --output-dir is supplied. --mutant-only MUST exit 1.
-Run from the synchronized project: python3 -B verify_moving_domain.py
-"""
 from __future__ import annotations
 
 import argparse
@@ -46,11 +41,6 @@ def exact(x, times=TIMES):
 
 
 def semidiscrete_reference(grid, initial, times=TIMES):
-    """Matrix exponential via the weighted-symmetric tridiagonal operator.
-
-    Used on a fixed UNIFORM spatial grid to isolate temporal error. The actual
-    PDE/Bessel comparison is reported independently; no fitted reference data.
-    """
     lap = grid.jac_block(initial, 1.0, 0.0, 1.0, 0.0, same=True)
     sw = np.sqrt(grid.w)
     upper = lap.diagonal(1) * sw[:-1] / sw[1:]
@@ -58,7 +48,6 @@ def semidiscrete_reference(grid, initial, times=TIMES):
     assert np.allclose(upper, lower, rtol=1e-13, atol=1e-10)
     vals, vecs = eigh_tridiagonal(lap.diagonal(), upper)
     assert abs(vals[-1]) < 1e-7 and vals[-2] < 0
-    # The zero eigenvalue is known exactly from the conservative Neumann matrix.
     vals[-1] = 0.0
     coeff = vecs.T @ (sw * initial)
     answer = (vecs @ (coeff[:, None] * np.exp(
@@ -72,7 +61,6 @@ def solve_case(n, *, graded=True, rtol=1e-11, max_step=TF/256,
                mutant=False, temporal_reference=False):
     grid = Grid(n, graded=graded)
     initial = exact(grid.x, np.array([0.0]))[:, 0]
-    # jac_block and rate both come from solve.py, never copied/replaced locally.
     lap = grid.jac_block(initial, D, 0.0, 1.0, 0.0, same=True)
 
     def r_used(t):
@@ -89,7 +77,6 @@ def solve_case(n, *, graded=True, rtol=1e-11, max_step=TF/256,
     values = result.sol(TIMES)
     reference = exact(grid.x)
     mass0 = float(2*grid.w @ initial)
-    # Check every accepted step as well as all shared comparison instants.
     mass_drift = max(float(np.max(abs(2*grid.w @ values-mass0))),
                      float(np.max(abs(2*grid.w @ result.y-mass0))))
     continuum_error = float(np.max(abs(values-reference)))

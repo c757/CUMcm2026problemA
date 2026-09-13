@@ -1,8 +1,3 @@
-"""Template-preserving, bounded-memory export of q2 from the q3 dense solution.
-
-Imported by run_all.py; the complete isolated entry point is reproduce.py.
---verify-only audits an existing workbook without writing it.
-"""
 from __future__ import annotations
 
 import argparse
@@ -43,7 +38,6 @@ def sha(path):
 
 
 def sample(run, times):
-    """Same PCHIP as Run.sample, vectorized over a bounded time block."""
     times = np.asarray(times)
     assert run.model.q == 3 and np.all(run.model.radius(times) == .02)
     state = run.values(times)
@@ -56,11 +50,6 @@ def sample(run, times):
 
 
 def template_skeleton():
-    """Load and edit the actual template; preserve all non-data ZIP members.
-
-    Only worksheet row data are streamed into this openpyxl-produced skeleton.
-    No sheet/name/style/theme relationships are reconstructed by hand.
-    """
     wb = load_workbook(PROJECT/"附件/附件3/result2.xlsx")
     assert wb.sheetnames == ["温度","水分浓度"]
     assert not wb.defined_names and not wb._external_links
@@ -73,7 +62,7 @@ def template_skeleton():
         header_style=copy(ws["B1"]._style)
         value_style=copy(ws["B2"]._style)
         time_style=copy(ws["A2"]._style)
-        ws.delete_rows(2,ws.max_row-1)  # Only placeholders in the in-memory copy.
+        ws.delete_rows(2,ws.max_row-1)  
         for col,r in enumerate(RADII,2):
             cell=ws.cell(1,col,float(r));cell._style=copy(header_style)
         ws.cell(2,1,1)._style=time_style
@@ -110,7 +99,6 @@ def write_book(run,path,rows,chunk):
                 for start in range(1,rows+1,chunk):
                     times=np.arange(start,min(rows+1,start+chunk))
                     values=sample(run,times)[index]
-                    # Independent scalar production sampler checks vectorization.
                     scalar=run.sample([times[0],times[-1]],RADII)[index]
                     assert np.max(abs(values[[0,-1]]-scalar)) < 1e-12
                     lines=[]
@@ -127,7 +115,6 @@ def write_book(run,path,rows,chunk):
 
 
 def audit_book(path,rows,expected=None,old_prefix=False):
-    """Full XML scan: all cells, row/time order, ranges, plus numerical samples."""
     book=load_workbook(path,read_only=True,data_only=True)
     assert book.sheetnames == ["温度","水分浓度"]
     for ws in book:
@@ -180,7 +167,6 @@ def audit_book(path,rows,expected=None,old_prefix=False):
 
 
 def export_run(run, out, *, rows=None, chunk=4096):
-    """Export the supplied, unrounded q3 solution; no dependency on old outputs."""
     start=time.perf_counter(); out=Path(out).resolve()
     if PROJECT not in out.parents or chunk < 1:
         raise ValueError('Output must be below project root; positive chunk required')
