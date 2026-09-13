@@ -1,5 +1,5 @@
 \section{支撑材料文件清单}\label{app:materials}
-表\ref{tab:catalog}列出支撑材料文件及用途。附录B给出七个脚本、五个辅助模块及依赖清单。
+表\ref{tab:catalog}列出当前支撑材料文件及用途。工作区根目录的“答案”文件夹集中保存题目要求填写的四个结果工作簿；其余材料位于“A题/论文提升\_20260913\_v4/”工程目录，表中其余路径均相对于该工程目录。附录B给出七个脚本、五个辅助模块及依赖清单。
 
 \begin{table}[htbp]\centering\small
 \caption{电子支撑材料目录}\label{tab:catalog}
@@ -7,7 +7,7 @@
 \toprule
 文件或目录 & 内容\\
 \midrule
-原题及附件目录 & 题目PDF、环境、半径及四个原始结果模板\\
+答案 & \texttt{result1.xlsx}、\texttt{result2.xlsx}、\texttt{result3.xlsx}、\texttt{result4.xlsx}，分别对应问题一至四的已填写结果，与\texttt{results/}中的同名文件一致\\
 \texttt{solve.py} & 物性、网格、通量、雅可比、积分、事件与小算例检验\\
 \texttt{run\_all.py} & 网格和时间复验、结果表、场数组及情景分析\\
 \texttt{make\_figures.py} & 从真实结果生成14组矢量和位图\\
@@ -17,11 +17,12 @@
 \texttt{test\_sync.py} & 采样统计与600 s导出的短程检查\\
 \texttt{utils/} & 全量读表、绘图风格、图表自检、导出与环境记录\\
 \texttt{requirements.txt} & 原计算使用的Python包版本\\
-\texttt{results/} & 四个XLSX、六张题表、全过程时空输出、过程数组、域外空值规则、诊断与参数摘要\\
+\texttt{results/} & 四个结果工作簿的原始输出、六张题表、全过程时空输出、过程数组、域外空值规则、诊断与参数摘要\\
 \texttt{figures/} & 原始输入、运行过程和结果图的PDF、SVG、PNG\\
-新增示意图目录 & 三张框架、流程与随体坐标图的可编辑源文件和矢量插入版本\\
-完整论文LaTeX目录 & 主文稿、章节、表格、图形及完整代码副本\\
-AI工具使用详情PDF & 关键提示、采纳范围、工具说明和人工复核提示\\
+新增示意图/ & 三张框架、流程与随体坐标图的可编辑源文件和矢量插入版本\\
+完整论文-LaTeX/ & 主文稿、章节、表格、图形及完整代码副本\\
+AI工具使用详情.pdf & 关键提示、采纳范围、工具说明和人工复核提示\\
+AI工具说明-LaTeX/ & AI工具使用说明的LaTeX源码与配图\\
 \bottomrule
 \end{tabularx}
 \end{table}

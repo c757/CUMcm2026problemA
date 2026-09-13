@@ -4,6 +4,7 @@
 
 ## 文件入口
 
+- [答案（工作区根目录）](../../答案/)：题目要求填写的 `result1.xlsx` 至 `result4.xlsx`，与 `results/` 中同名结果一致。
 - `完整论文.pdf`、`完整论文-LaTeX/`：论文及完整源码。
 - `AI工具使用详情.pdf`、`AI工具说明-LaTeX/`：AI工具使用说明及源码；当前说明仍标注为修改稿，提交前须核对。
 - `solve.py`、`run_all.py`、`reproduce.py`及其他脚本、`utils/`、`requirements.txt`：完整程序和依赖。
