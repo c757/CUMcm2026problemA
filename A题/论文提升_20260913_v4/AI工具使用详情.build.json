@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "created_at": "2026-09-13T05:56:33.773363+00:00",
+  "created_at": "2026-09-13T07:38:00.664197+00:00",
   "passed": true,
   "main_tex": "main.tex",
-  "project_root": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/论文提升_20260913_v4/AI工具说明-LaTeX",
-  "source_sha256": "6bfd3ec86dc139c5e76f881890d9722e6c6f2f8ae0abf01bbe32267ff7fdb4a9",
-  "compiled_source_sha256": "6bfd3ec86dc139c5e76f881890d9722e6c6f2f8ae0abf01bbe32267ff7fdb4a9",
-  "post_build_source_sha256": "6bfd3ec86dc139c5e76f881890d9722e6c6f2f8ae0abf01bbe32267ff7fdb4a9",
-  "pdf_sha256": "e405a77743d35d11ad493c19eae672060c0c14c23a593990ea977f97edbf8bd1",
-  "project_manifest_sha256": "c8805bda6273f1f42049a05ee202369a443d3071b20ae98da81aba41fff3a12e",
+  "project_root": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/论文提升_获奖呈现优化版/AI工具说明-LaTeX",
+  "source_sha256": "b2af986d2ae2d9ed1e6328aa41510f086b4b5466f11ff062d9119a6dba05ba91",
+  "compiled_source_sha256": "b2af986d2ae2d9ed1e6328aa41510f086b4b5466f11ff062d9119a6dba05ba91",
+  "post_build_source_sha256": "b2af986d2ae2d9ed1e6328aa41510f086b4b5466f11ff062d9119a6dba05ba91",
+  "pdf_sha256": "e0d183794c7a7f2d7c39ddda6466a35b0adc231fc46b98b4f9b8e384d9919070",
+  "project_manifest_sha256": "8c064c18f95eb0d6e775cde690b561710456f325f80d443f7e1c182243678355",
   "engine": "xelatex",
   "tools": {
     "latexmk": {
@@ -35,9 +35,9 @@
         "-outdir=build",
         "main.tex"
       ],
-      "cwd": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/论文提升_20260913_v4/AI工具说明-LaTeX",
+      "cwd": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/论文提升_获奖呈现优化版/AI工具说明-LaTeX",
       "returncode": 0,
-      "duration_seconds": 38.952
+      "duration_seconds": 39.465
     }
   ],
   "warnings": [],
@@ -47,5 +47,5 @@
     "reason": null
   },
   "issues": [],
-  "reproduce": "/usr/bin/python3 /vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/.agents/skills/math-modeling/tools/latex/scripts/latex_paper.py build /vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/论文提升_20260913_v4/AI工具说明-LaTeX/main.tex --engine xelatex --timeout 240 --publish /vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/论文提升_20260913_v4/AI工具使用详情.pdf --overwrite"
+  "reproduce": "/usr/bin/python3 /vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/.agents/skills/math-modeling/tools/latex/scripts/latex_paper.py build /vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/论文提升_获奖呈现优化版/AI工具说明-LaTeX/main.tex --engine xelatex --timeout 240 --publish /vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/论文提升_获奖呈现优化版/AI工具使用详情.pdf --overwrite"
 }

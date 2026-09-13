@@ -3,19 +3,19 @@
   "contest": "cumcm",
   "main_tex": "main.tex",
   "template": {
-    "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/AI工具说明-LaTeX",
-    "source": "用户已批准的v3 AI披露工程，追加本轮实际工作记录",
-    "version": "v3-20260912",
-    "sha256": "e0fd64c54df8ca087d7c9aea19d17709ae8aad1607c69ebdafb7fd82282bfaff"
+    "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/论文提升_20260913_v4/AI工具说明-LaTeX",
+    "source": "现有真实AI使用披露",
+    "version": "e06e448",
+    "sha256": "c32c533613136e6f9eea2e4418f96695284998eebc322fabc0f02a7d304c47b1"
   },
   "template_files": {
-    "build/main.build.json": "0f070d01fe548dc00d8d24eb9f4e74ec8cdb05bafd9a9f9114b7c87a63d58da0",
-    "build/main.log": "f9c242c0f370c0170a2430cab55225479742e1c33501ff38af67ccc0fe84a2b2",
-    "build/main.pdf": "ad1b212a075c29fc928496199efa4b89d892446e9134ce0bfdccecba282e4ed7",
-    "latex-project.json": "fa8304ff118b00096e59757fa0e66766834bd468328a6a2d25d6c2cb9b749db5",
-    "main.tex": "ef77539709fc95e765714a6359b46bdafcd1565553f6f4b232c595a7c89b6da0",
+    "build/main.build.json": "5ff29161ec8fd3f0380ed76b943d573f4525be981dd03db0a5491304e7ebd67a",
+    "build/main.log": "0393e48c749dae66a6234734427a21b330a142f60f0befc8122c0effc10c41bd",
+    "build/main.pdf": "e405a77743d35d11ad493c19eae672060c0c14c23a593990ea977f97edbf8bd1",
+    "latex-project.json": "c8805bda6273f1f42049a05ee202369a443d3071b20ae98da81aba41fff3a12e",
+    "main.tex": "68b27769b2d3133437a4990a393b6e5b5d3fcf1a6e93ef75dda52e8d81d41db1",
     "references.bib": "c85fa9f8c7cdb3b0c8c2f394bebd7624f6ff5abdd6bac5b4f43b58e67ee7c222"
   },
   "resource_bindings": [],
-  "created_at": "2026-09-12T16:35:07.194675+00:00"
+  "created_at": "2026-09-13T07:03:35.584261+00:00"
 }

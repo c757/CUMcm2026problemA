@@ -41,3 +41,6 @@ id_ed25519
 *.pfx
 
 # The repository-specific SSH private key is under .git/ssh/ and cannot be tracked.
+
+# Redundant publication grayscale previews.
+/A题/论文提升_20260913_v4/figures/_qa/

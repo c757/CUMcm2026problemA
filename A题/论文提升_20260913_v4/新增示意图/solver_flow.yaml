@@ -1,0 +1,57 @@
+meta:
+  profile: academic-paper
+  figureType: workflow
+  theme: academic
+  palette: ieee-bw
+  layout: horizontal
+  canvas: 800x248
+  font:
+    primary: 'Times New Roman, Noto Serif CJK SC'
+    cjk: 'Times New Roman, SimSun, Noto Serif CJK SC'
+    formula: 'Latin Modern, Times New Roman, Noto Serif CJK SC'
+  print: {target: cn-thesis}
+  title: 数值求解流程
+  description: 由数据和径向网格组装有限体积方程，联立积分并定位各问的终止条件。
+nodes:
+  - id: read
+    label: "读取数据\n初态与边界"
+    type: process
+    style: {fillColor: "#FAFAFA", fontColor: "#171717", strokeColor: "#454545", strokeWidth: 1.5}
+    bounds: {x: 20, y: 20, width: 160, height: 66}
+  - id: grid
+    label: "建立径向网格\n表面加密"
+    type: process
+    style: {fillColor: "#FAFAFA", fontColor: "#171717", strokeColor: "#454545", strokeWidth: 1.5}
+    bounds: {x: 220, y: 20, width: 160, height: 66}
+  - id: props
+    label: "计算变物性参数\n当前温湿状态"
+    type: process
+    style: {fillColor: "#FAFAFA", fontColor: "#171717", strokeColor: "#454545", strokeWidth: 1.5}
+    bounds: {x: 420, y: 20, width: 160, height: 66}
+  - id: rhs
+    label: "组装守恒方程\n共享面通量"
+    type: process
+    style: {fillColor: "#FAFAFA", fontColor: "#171717", strokeColor: "#454545", strokeWidth: 1.5}
+    bounds: {x: 620, y: 20, width: 160, height: 66}
+  - id: integrate
+    label: "时间积分\n自适应隐式BDF"
+    type: process
+    style: {fillColor: "#FAFAFA", fontColor: "#171717", strokeColor: "#454545", strokeWidth: 1.5}
+    bounds: {x: 620, y: 152, width: 160, height: 66}
+  - id: event
+    label: "检查事件函数\n定位终止时刻"
+    type: process
+    style: {fillColor: "#FAFAFA", fontColor: "#171717", strokeColor: "#454545", strokeWidth: 1.5}
+    bounds: {x: 420, y: 152, width: 160, height: 66}
+  - id: output
+    label: "输出结果\n径向重建与采样"
+    type: process
+    style: {fillColor: "#FAFAFA", fontColor: "#171717", strokeColor: "#454545", strokeWidth: 1.5}
+    bounds: {x: 220, y: 152, width: 160, height: 66}
+edges:
+  - {from: read, to: grid, type: primary}
+  - {from: grid, to: props, type: primary}
+  - {from: props, to: rhs, type: primary}
+  - {from: rhs, to: integrate, type: primary}
+  - {from: integrate, to: event, type: primary}
+  - {from: event, to: output, type: primary}

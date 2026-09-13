@@ -1,0 +1,72 @@
+meta:
+  profile: academic-paper
+  figureType: workflow
+  theme: academic
+  palette: ieee-bw
+  layout: horizontal
+  canvas: 800x360
+  font:
+    primary: 'Times New Roman, Noto Serif CJK SC'
+    cjk: 'Times New Roman, SimSun, Noto Serif CJK SC'
+    formula: 'Latin Modern, Times New Roman, Noto Serif CJK SC'
+  print: {target: cn-thesis}
+  title: 随体坐标与移动边界
+  description: 上行为变化的物理径向区间，下行为固定随体区间；虚线连接同一材料位置。
+nodes:
+  - id: map
+    label: "坐标映射\n\\(x=r/R(t)\\)"
+    type: process
+    style: {fontSize: 20, fillColor: "none", fontColor: "#171717", strokeColor: "none", strokeWidth: 0}
+    bounds: {x: 225, y: 5, width: 300, height: 60}
+  - id: shrink
+    label: "← 径向收缩"
+    type: text
+    style: {fontSize: 20}
+    bounds: {x: 590, y: 5, width: 190, height: 42}
+  - id: origin
+    label: "圆柱中心\n物理坐标\n\\(r=0\\)"
+    type: process
+    style: {fillColor: "#FAFAFA", fontColor: "#171717", strokeColor: "#454545", strokeWidth: 1.5}
+    bounds: {x: 20, y: 75, width: 170, height: 96}
+  - id: material
+    label: "材料点\n物理坐标\n\\(r\\)"
+    type: process
+    style: {fillColor: "#FAFAFA", fontColor: "#171717", strokeColor: "#454545", strokeWidth: 1.5}
+    bounds: {x: 305, y: 75, width: 170, height: 96}
+  - id: surface
+    label: "移动表面\n\\(r=R(t)\\)\n对流边界"
+    type: process
+    style: {fillColor: "#FAFAFA", fontColor: "#171717", strokeColor: "#454545", strokeWidth: 1.5}
+    bounds: {x: 600, y: 75, width: 180, height: 96}
+  - id: fixed_origin
+    label: "固定中心\n随体坐标\n\\(x=0\\)"
+    type: process
+    style: {fillColor: "#FAFAFA", fontColor: "#171717", strokeColor: "#454545", strokeWidth: 1.5}
+    bounds: {x: 20, y: 235, width: 170, height: 96}
+  - id: fixed_material
+    label: "同一材料点\n固定坐标\n\\(x\\)"
+    type: process
+    style: {fillColor: "#FAFAFA", fontColor: "#171717", strokeColor: "#454545", strokeWidth: 1.5}
+    bounds: {x: 305, y: 235, width: 170, height: 96}
+  - id: fixed_surface
+    label: "固定表面\n随体坐标\n\\(x=1\\)"
+    type: process
+    style: {fillColor: "#FAFAFA", fontColor: "#171717", strokeColor: "#454545", strokeWidth: 1.5}
+    bounds: {x: 600, y: 235, width: 180, height: 96}
+edges:
+  - {from: origin, to: material, type: primary}
+  - {from: material, to: surface, type: primary}
+  - {from: fixed_origin, to: fixed_material, type: primary}
+  - {from: fixed_material, to: fixed_surface, type: primary}
+  - from: origin
+    to: fixed_origin
+    type: primary
+    style: {dashed: true}
+  - from: material
+    to: fixed_material
+    type: primary
+    style: {dashed: true}
+  - from: surface
+    to: fixed_surface
+    type: primary
+    style: {dashed: true}

@@ -3,27 +3,27 @@
   "contest": "cumcm",
   "main_tex": "main.tex",
   "template": {
-    "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/完整论文-LaTeX",
-    "source": "用户已批准的v3成熟论文工程；本轮不改数值模型",
-    "version": "v3-20260912",
-    "sha256": "b37d36d9b22eba913348ba8fecf41b90ca9afae14fb163f8f18251cd0b13ae5e"
+    "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/论文提升_20260913_v4/完整论文-LaTeX",
+    "source": "服务器已验证的现有论文工程，保留全部技术内容，仅优化呈现",
+    "version": "e06e448",
+    "sha256": "ea094a7f779ddcb2e0132dc5eeda38113ac4d10ffb1eae770e644332507c61f5"
   },
   "template_files": {
-    "build/main.build.json": "3c92332414ab0551ca26e339fdb73f6415e43d31ffad75b18a47bf7f032aa935",
-    "build/main.log": "0eca87e0ae4b66c26415d959837e70739377f067d639e0e4eec1a470b6b32b25",
-    "build/main.pdf": "38e0f2c13275289cdaaf69408881e3f827a462e161c6323fa9392563fbc90fe1",
+    "build/main.build.json": "7f95c8f82f802f176205da4a92cb956db9122d11851fe4de9e58ab616caf0d56",
+    "build/main.log": "d9e19cb059fe3a23051b6b716dbb2a7ceb5e98aeb2cba48322863a189a943a5d",
+    "build/main.pdf": "a9a5d55e5d45702280329da0452ea0267f8c3c0f0a83188acf1c6bb9c5a2ff90",
     "code/export_result2_full.py": "c81ff0cbcd75cce601289aa82d74b07f323e0c1574728ebf19db7025fdca7694",
-    "code/make_figures.py": "5948cdfbd11d214325bbccefc5f4ed822b44847985bc666747440a549ffa08fd",
+    "code/make_figures.py": "ef7a8af3e0f0251acc23091dc466cc892264bf06453a48c4ca2543819fc6081c",
     "code/reproduce.py": "08ba48f9fba7278a4ba04a5a2bb03f277de9ec33f531602868842d3ef12e5d2d",
     "code/requirements.txt": "ad5b826b3746c67fb2ea58338748e212698d833fffe043699ca58a01f4f36eda",
     "code/run_all.py": "4d226a3840a96572a772684d725e7327f4e671f48c80592d4181643faba381ad",
     "code/solve.py": "a08833e8e7e1ca2473048fde99a5c1b24706711264deba1921f829fd53a05687",
     "code/test_sync.py": "d228ef40927af1db6324351591b25860f75278e4568b398e253d402888818c59",
-    "code/utils/export_figure.py": "f60b55b719a77afaf50cfbb56db5043fb802900bb7b0b300bfb493141777be24",
-    "code/utils/plot_style.py": "f3de0a0c858d6018310d7e461574697a4cec7b28e5e20b8ccdaa7749772147e2",
+    "code/utils/export_figure.py": "61fccd231374faee69c5ccf5161c4e3a58392f2bdae2c62c74914e437fe8b09f",
+    "code/utils/plot_style.py": "593ca567b5d3e25c61f0d0ee89ad1a3a4eb3a77bbffa58f119ee7dff22abb8d4",
     "code/utils/read_rows.py": "ab15b3bd0d0c9b368af82c6e7836b1073167c965e382cf2d1fa654aa1b077e17",
-    "code/utils/repro_manifest.py": "696e0325ed1f96418f33787c8c6852b3e024430290653abe76253b0a7b47535a",
-    "code/utils/setup_style.py": "e2e5c26cea110c19a690c4f79b1d4b8a378cac665c61ebe9982d371169757531",
+    "code/utils/repro_manifest.py": "5c1302f71571c68c5edcdfdab8708f7c524c85579b390c1dd2045a9591cd5ddf",
+    "code/utils/setup_style.py": "93877686cba0475274e1a2b504d3ce50fd23d675b91ef2d52ece5b537eb81893",
     "code/verify_moving_domain.py": "3f6f409da0fb700bb1c02f57389ddbd78a754d223083cd124d897d5f7187cf03",
     "figures/process_q2_diffusion.pdf": "69d641cf32fe964d59db9ab1dce3f811e610c75c35e6e108af31e162792e3d84",
     "figures/process_q3_convergence.pdf": "71943d1c71cfaa5ffb5f9cd4b50226375736b98a31f960f7f4aa1e3dd1e58739",
@@ -31,22 +31,22 @@
     "figures/process_q4_moving.pdf": "3cfb3c6b31299b626e0888c439df1d85e3d7b8c170f82db2adb8faefe90dcf07",
     "figures/raw_q1_environment.pdf": "fe28469ab6cbc0d22f77a134c88a9a945e89f24d2ee982cada2ebaafdd343118",
     "figures/raw_q3_diffusivity.pdf": "7ef6a79377ec6e28c284706beb884e56e918ecef4051e7330673e9668504d304",
-    "figures/raw_q4_radius.pdf": "ad05eb7cd98cf9651018faa6f92cfe1f92644ce970853d8cd26b7ba4f3fe1e18",
+    "figures/raw_q4_radius.pdf": "c47c6137b29bd05e0fb64e9c946f4fd240fd58192f9185504a2d2c09b79d8ea9",
     "figures/result_q1_profiles.pdf": "a9a157179bd5bf0bd77c1bb8680378ad675a2ea27ed33f749da2a20afdfbf6dc",
     "figures/result_q2_fields.pdf": "7a1affca471f2674591ae7a447d980c705ba825be7a28e707fbd29cbe210cca4",
     "figures/result_q3_terminal.pdf": "1f4cbb53ffe011b95e3072bc921b50a8aa93dcb6854846424c8b18eb678c328e",
-    "figures/result_q4_counterfactual.pdf": "a37378c77658666e6f1281c8597d4ac77571799d6f3911df40e6f87b8256f831",
+    "figures/result_q4_counterfactual.pdf": "37a45ef910e963f38de74203666fc4594b3281a41155422527fc2dfa34da2274",
     "figures/result_q4_sensitivity.pdf": "989db88f4aa382aa82162949fdc3af818f611088f5622098a15e50a85231aa23",
-    "latex-project.json": "290ae99ef37f9fea7f5ad1e4f250b28be5f5e2d01c99235a5cb9a68010bcb803",
-    "main.tex": "2bb43e223d4fd2e8f6a69f6ff413fbe5b6ccb144037504b8722ebafd94cd5c2d",
+    "latex-project.json": "b4a350d6b4993dca7e92b62aefc3fd837ad95536063b0aafd473ea1f179eed68",
+    "main.tex": "641f68eeba2a3f6f181b46fdd2b1c926c88d4fbda9aadab5de8a500dd19a3b6e",
     "references.bib": "c85fa9f8c7cdb3b0c8c2f394bebd7624f6ff5abdd6bac5b4f43b58e67ee7c222",
-    "sections/01_problem.tex": "f86756837e5ea969f77c6c2c0bd8f10a5a49c93a9d389321bbcc021b7bcdabbb",
-    "sections/02_model.tex": "ea99a29b833ce5e210f54f18bc42f37c7c6a0da8cabc5bf9ed4c30cf167c3ee4",
-    "sections/03_results.tex": "2f4db432037d12f84e07fe613e1623c0889ddb51806bad22c2f0230041d7c2ba",
-    "sections/04_validation.tex": "117a3db14c3bb4627152b47541d83ad4754a461318a7a523e526f69295d9056d",
-    "sections/05_discussion.tex": "ebd8ef2c91159732b36607585dce543f3b4c51e0efafa71e4cced9f13fc03386",
-    "sections/06_references.tex": "3e7fc1d081bd2546adef0804395f6e09253ad11e475cd18d55b88a84d14ea1ed",
-    "sections/07_appendix.tex": "015e8e1d9e1cb937d4edd1339887419accfd71cb946951d2dfcb006083b961d8",
+    "sections/01_problem.tex": "ef793a0a0c2848975b0ac6ec444d3040c6274d82ccef6876dc6434979e1ab62f",
+    "sections/02_model.tex": "cfab8ff7af9d1be78bd7ebe59366bc7d4bca6922d27dad57088232e4912ad443",
+    "sections/03_results.tex": "b9b90e206c226fc71e700998b8adbfd67e359da9fd8856444bb43488dc2e0c8c",
+    "sections/04_validation.tex": "3d482621bce937605537a9b4c0579bb461451f1e2d9eb047a4974700620135ea",
+    "sections/05_discussion.tex": "c7db9ad1cc989a5180c284b800cc75f1fe3b11b42664d7dff186e28b0c978761",
+    "sections/06_references.tex": "1f1e048efc3331f45d7d4eda9cd0b49578cd0e5fde815bed4759d939a791c16c",
+    "sections/07_appendix.tex": "a67fd959b990a15629dcb38309e9b9fee59a5b25a84cf9dbf651a734dd78c0fa",
     "tables/table1.tex": "e3d0ad32ff8c094dff8dd42edc628ed6df98d5868987bbd95bb9ff1e470f18c9",
     "tables/table2.tex": "b9b25d1ae530fb56f38f7c514a7b8bbca0c77224664aabf42fe26dea3eab4da0",
     "tables/table3.tex": "36280baf21798145aa930797d97d9a3945c2c4ed9ef6439cef4dcd3caebcdc9e",
@@ -56,180 +56,201 @@
   },
   "resource_bindings": [
     {
-      "source": "solve.py",
-      "destination": "code/solve.py",
-      "sha256": "a08833e8e7e1ca2473048fde99a5c1b24706711264deba1921f829fd53a05687",
+      "source": "export_result2_full.py",
+      "destination": "code/export_result2_full.py",
+      "sha256": "c81ff0cbcd75cce601289aa82d74b07f323e0c1574728ebf19db7025fdca7694",
       "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.077427+00:00"
-    },
-    {
-      "source": "run_all.py",
-      "destination": "code/run_all.py",
-      "sha256": "4d226a3840a96572a772684d725e7327f4e671f48c80592d4181643faba381ad",
-      "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.081353+00:00"
+      "bound_at": "2026-09-13T08:44:44.552821+00:00"
     },
     {
       "source": "make_figures.py",
       "destination": "code/make_figures.py",
       "sha256": "ef7a8af3e0f0251acc23091dc466cc892264bf06453a48c4ca2543819fc6081c",
       "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.085017+00:00"
-    },
-    {
-      "source": "verify_moving_domain.py",
-      "destination": "code/verify_moving_domain.py",
-      "sha256": "3f6f409da0fb700bb1c02f57389ddbd78a754d223083cd124d897d5f7187cf03",
-      "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.088816+00:00"
-    },
-    {
-      "source": "export_result2_full.py",
-      "destination": "code/export_result2_full.py",
-      "sha256": "c81ff0cbcd75cce601289aa82d74b07f323e0c1574728ebf19db7025fdca7694",
-      "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.092570+00:00"
+      "bound_at": "2026-09-13T08:44:44.555668+00:00"
     },
     {
       "source": "reproduce.py",
       "destination": "code/reproduce.py",
       "sha256": "08ba48f9fba7278a4ba04a5a2bb03f277de9ec33f531602868842d3ef12e5d2d",
       "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.094602+00:00"
-    },
-    {
-      "source": "test_sync.py",
-      "destination": "code/test_sync.py",
-      "sha256": "d228ef40927af1db6324351591b25860f75278e4568b398e253d402888818c59",
-      "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.096631+00:00"
+      "bound_at": "2026-09-13T08:44:44.558108+00:00"
     },
     {
       "source": "requirements.txt",
       "destination": "code/requirements.txt",
       "sha256": "ad5b826b3746c67fb2ea58338748e212698d833fffe043699ca58a01f4f36eda",
       "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.098619+00:00"
+      "bound_at": "2026-09-13T08:44:44.560329+00:00"
+    },
+    {
+      "source": "run_all.py",
+      "destination": "code/run_all.py",
+      "sha256": "4d226a3840a96572a772684d725e7327f4e671f48c80592d4181643faba381ad",
+      "hash_mode": "content",
+      "bound_at": "2026-09-13T08:44:44.562534+00:00"
+    },
+    {
+      "source": "solve.py",
+      "destination": "code/solve.py",
+      "sha256": "a08833e8e7e1ca2473048fde99a5c1b24706711264deba1921f829fd53a05687",
+      "hash_mode": "content",
+      "bound_at": "2026-09-13T08:44:44.564727+00:00"
+    },
+    {
+      "source": "test_sync.py",
+      "destination": "code/test_sync.py",
+      "sha256": "d228ef40927af1db6324351591b25860f75278e4568b398e253d402888818c59",
+      "hash_mode": "content",
+      "bound_at": "2026-09-13T08:44:44.567036+00:00"
     },
     {
       "source": "utils/export_figure.py",
       "destination": "code/utils/export_figure.py",
       "sha256": "61fccd231374faee69c5ccf5161c4e3a58392f2bdae2c62c74914e437fe8b09f",
       "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.102608+00:00"
+      "bound_at": "2026-09-13T08:44:44.569282+00:00"
     },
     {
       "source": "utils/plot_style.py",
       "destination": "code/utils/plot_style.py",
       "sha256": "593ca567b5d3e25c61f0d0ee89ad1a3a4eb3a77bbffa58f119ee7dff22abb8d4",
       "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.106246+00:00"
+      "bound_at": "2026-09-13T08:44:44.571489+00:00"
     },
     {
       "source": "utils/read_rows.py",
       "destination": "code/utils/read_rows.py",
       "sha256": "ab15b3bd0d0c9b368af82c6e7836b1073167c965e382cf2d1fa654aa1b077e17",
       "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.108265+00:00"
+      "bound_at": "2026-09-13T08:44:44.573872+00:00"
     },
     {
       "source": "utils/repro_manifest.py",
       "destination": "code/utils/repro_manifest.py",
       "sha256": "5c1302f71571c68c5edcdfdab8708f7c524c85579b390c1dd2045a9591cd5ddf",
       "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.111949+00:00"
+      "bound_at": "2026-09-13T08:44:44.576048+00:00"
     },
     {
       "source": "utils/setup_style.py",
       "destination": "code/utils/setup_style.py",
       "sha256": "93877686cba0475274e1a2b504d3ce50fd23d675b91ef2d52ece5b537eb81893",
       "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.115920+00:00"
+      "bound_at": "2026-09-13T08:44:44.578317+00:00"
+    },
+    {
+      "source": "verify_moving_domain.py",
+      "destination": "code/verify_moving_domain.py",
+      "sha256": "3f6f409da0fb700bb1c02f57389ddbd78a754d223083cd124d897d5f7187cf03",
+      "hash_mode": "content",
+      "bound_at": "2026-09-13T08:44:44.580521+00:00"
+    },
+    {
+      "source": "新增示意图/model_framework.pdf",
+      "destination": "figures/model_framework.pdf",
+      "sha256": "8cd7c9cdddbd0b212bf181e0f570fd67ce162032c368f2d73541f4d84177e7e3",
+      "hash_mode": "content",
+      "bound_at": "2026-09-13T08:44:44.587525+00:00"
+    },
+    {
+      "source": "新增示意图/moving_coordinates.pdf",
+      "destination": "figures/moving_coordinates.pdf",
+      "sha256": "c2601d50eb24be3e3038ca14661efd65dedea51a8f28d6178e5253305fd787b3",
+      "hash_mode": "content",
+      "bound_at": "2026-09-13T08:44:44.593648+00:00"
     },
     {
       "source": "figures/process_q2_diffusion.pdf",
       "destination": "figures/process_q2_diffusion.pdf",
       "sha256": "69d641cf32fe964d59db9ab1dce3f811e610c75c35e6e108af31e162792e3d84",
       "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.120595+00:00"
+      "bound_at": "2026-09-13T08:44:44.596522+00:00"
     },
     {
       "source": "figures/process_q3_convergence.pdf",
       "destination": "figures/process_q3_convergence.pdf",
       "sha256": "71943d1c71cfaa5ffb5f9cd4b50226375736b98a31f960f7f4aa1e3dd1e58739",
       "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.124180+00:00"
+      "bound_at": "2026-09-13T08:44:44.598774+00:00"
     },
     {
       "source": "figures/process_q3_threshold.pdf",
       "destination": "figures/process_q3_threshold.pdf",
       "sha256": "9a3aa54000839f1a9d5845e1ff4d3b840fcaa7fcd937ae52cd96d3a805efb342",
       "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.127620+00:00"
+      "bound_at": "2026-09-13T08:44:44.600940+00:00"
     },
     {
       "source": "figures/process_q4_moving.pdf",
       "destination": "figures/process_q4_moving.pdf",
       "sha256": "3cfb3c6b31299b626e0888c439df1d85e3d7b8c170f82db2adb8faefe90dcf07",
       "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.131785+00:00"
+      "bound_at": "2026-09-13T08:44:44.603629+00:00"
     },
     {
       "source": "figures/raw_q1_environment.pdf",
       "destination": "figures/raw_q1_environment.pdf",
       "sha256": "fe28469ab6cbc0d22f77a134c88a9a945e89f24d2ee982cada2ebaafdd343118",
       "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.135350+00:00"
+      "bound_at": "2026-09-13T08:44:44.605820+00:00"
     },
     {
       "source": "figures/raw_q3_diffusivity.pdf",
       "destination": "figures/raw_q3_diffusivity.pdf",
       "sha256": "7ef6a79377ec6e28c284706beb884e56e918ecef4051e7330673e9668504d304",
       "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.138799+00:00"
+      "bound_at": "2026-09-13T08:44:44.607955+00:00"
     },
     {
       "source": "figures/raw_q4_radius.pdf",
       "destination": "figures/raw_q4_radius.pdf",
       "sha256": "c47c6137b29bd05e0fb64e9c946f4fd240fd58192f9185504a2d2c09b79d8ea9",
       "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.142324+00:00"
+      "bound_at": "2026-09-13T08:44:44.610176+00:00"
     },
     {
       "source": "figures/result_q1_profiles.pdf",
       "destination": "figures/result_q1_profiles.pdf",
       "sha256": "a9a157179bd5bf0bd77c1bb8680378ad675a2ea27ed33f749da2a20afdfbf6dc",
       "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.145764+00:00"
+      "bound_at": "2026-09-13T08:44:44.612562+00:00"
     },
     {
       "source": "figures/result_q2_fields.pdf",
       "destination": "figures/result_q2_fields.pdf",
       "sha256": "7a1affca471f2674591ae7a447d980c705ba825be7a28e707fbd29cbe210cca4",
       "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.151507+00:00"
+      "bound_at": "2026-09-13T08:44:44.616241+00:00"
     },
     {
       "source": "figures/result_q3_terminal.pdf",
       "destination": "figures/result_q3_terminal.pdf",
       "sha256": "1f4cbb53ffe011b95e3072bc921b50a8aa93dcb6854846424c8b18eb678c328e",
       "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.155227+00:00"
+      "bound_at": "2026-09-13T08:44:44.618401+00:00"
     },
     {
       "source": "figures/result_q4_counterfactual.pdf",
       "destination": "figures/result_q4_counterfactual.pdf",
       "sha256": "37a45ef910e963f38de74203666fc4594b3281a41155422527fc2dfa34da2274",
       "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.158614+00:00"
+      "bound_at": "2026-09-13T08:44:44.620552+00:00"
     },
     {
       "source": "figures/result_q4_sensitivity.pdf",
       "destination": "figures/result_q4_sensitivity.pdf",
       "sha256": "989db88f4aa382aa82162949fdc3af818f611088f5622098a15e50a85231aa23",
       "hash_mode": "content",
-      "bound_at": "2026-09-13T04:56:38.161979+00:00"
+      "bound_at": "2026-09-13T08:44:44.622728+00:00"
+    },
+    {
+      "source": "新增示意图/solver_flow.pdf",
+      "destination": "figures/solver_flow.pdf",
+      "sha256": "63680334ef6c3476bde92e81e789def184e097afdcc1b4d0d21081cec3c91038",
+      "hash_mode": "content",
+      "bound_at": "2026-09-13T08:44:44.628557+00:00"
     }
   ],
-  "created_at": "2026-09-12T16:34:32.544814+00:00"
+  "created_at": "2026-09-13T07:03:35.460169+00:00"
 }

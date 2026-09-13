@@ -14,11 +14,12 @@
 \texttt{verify\_moving\_domain.py} & 移动域解析模态、时空加密、几何因子对照与守恒检验\\
 \texttt{export\_result2\_full.py} & 全过程逐秒工作簿的分块导出和完整结构检查\\
 \texttt{reproduce.py} & 完整计算、验证和导出的运行入口\\
-\texttt{test\_sync.py} & 采样统计与600秒导出的短程检查\\
+\texttt{test\_sync.py} & 采样统计与600 s导出的短程检查\\
 \texttt{utils/} & 全量读表、绘图风格、图表自检、导出与环境记录\\
 \texttt{requirements.txt} & 原计算使用的Python包版本\\
 \texttt{results/} & 四个XLSX、六张题表、过程数组、诊断与参数摘要\\
 \texttt{figures/} & 原始输入、运行过程和结果图的PDF、SVG、PNG\\
+新增示意图目录 & 三张框架、流程与随体坐标图的可编辑源文件和矢量插入版本\\
 完整论文LaTeX目录 & 主文稿、章节、表格、图形及完整代码副本\\
 AI工具使用详情PDF & 关键提示、采纳范围、工具说明和人工复核提示\\
 \bottomrule
@@ -37,9 +38,9 @@ python3 -B verify_moving_domain.py
 python3 -B verify_moving_domain.py --mutant-only
 \end{Verbatim}
 
-短程检查覆盖600秒；最后一条只计算冻结几何因子的对照，其误差应超过正常算例的判据。正式问题二文件仍按全过程逐秒输出。
+短程检查覆盖600~s；最后一条只计算冻结几何因子的对照，其误差应超过正常算例的判据。正式问题二文件仍按全过程逐秒输出。
 
-论文在LaTeX工程内以XeLaTeX编译两遍，宏包与字体要求见支撑材料说明。支撑包含全部程序、结果、图形、LaTeX源码及AI使用详情，主论文PDF单独提供。字体二进制未重复打包，使用者须按字体许可准备。
+论文在LaTeX工程内以XeLaTeX编译两遍，宏包与字体要求见支撑材料说明。支撑包含全部程序、结果、图形、LaTeX源码及AI使用详情，主论文PDF单独提供。支撑材料\texttt{assets/}保留文泉驿字体及其许可证；LaTeX使用Noto CJK字体，编译时按同名字体准备。
 
 \section{完整可运行源代码}
 
@@ -88,11 +89,11 @@ python3 -B verify_moving_domain.py --mutant-only
 \end{tabularx}
 \end{table}
 
-问题一、二按1秒间隔输出；问题二覆盖整个烘干过程，正文题表仍只列0.5至3.0小时。问题三、四按60秒间隔输出，并分别补入严格整秒终点206902秒和183927秒。四位小数仅用于展示，终点判断采用未舍入数值。
+问题一、二按1 s间隔输出；问题二覆盖整个烘干过程，正文题表仍只列0.5至3.0~h。问题三、四按60 s间隔输出，并分别补入严格整秒终点206902 s和183927~s。四位小数仅用于展示，终点判断采用未舍入数值。
 
 固定域按物理半径采样。问题四的实际表面列对应$R(t)$，当固定位置$r>R(t)$时留空，题表用破折号表示；工作簿4共有20099个此类域外位置。固定位置与材料轨迹$r=xR(t)$有不同含义，应按所需对象读取。
 
 \subsection{补充轨迹与验证数据}
 \texttt{results/}中的过程数组与\path{q1_history.csv}、\path{q3_history.csv}、\path{q4_history.csv}保留未舍入场及过程指标。网格、时间和敏感性比较分别见\path{grid_comparison.csv}、\path{time_comparison.csv}、\path{sensitivity.csv}，移动域基准详见\path{moving_domain_benchmark.json}与\path{moving_domain_convergence.csv}。
 
-\texttt{figures/}保留14组原始输入、过程及结果图的PDF、SVG和PNG文件；正文选用其中12幅回答四问与数值检验。完整源程序已列于附录B，运行条件与入口见附录\ref{app:materials}。
+\texttt{figures/}保留14组原始输入、过程及结果图的PDF、SVG和PNG文件；正文选用其中12幅回答四问与数值检验，另增三张解释共同框架、求解流程和随体坐标的示意图。完整源程序已列于附录B，运行条件与入口见附录\ref{app:materials}。
