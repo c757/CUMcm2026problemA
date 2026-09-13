@@ -3,7 +3,7 @@
   "contest": "cumcm",
   "main_tex": "main.tex",
   "template": {
-    "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/论文提升_20260913_v4/AI工具说明-LaTeX",
+    "path": ".",
     "source": "现有真实AI使用披露",
     "version": "e06e448",
     "sha256": "c32c533613136e6f9eea2e4418f96695284998eebc322fabc0f02a7d304c47b1"

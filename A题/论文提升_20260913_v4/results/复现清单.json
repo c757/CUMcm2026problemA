@@ -4,122 +4,122 @@
   "random_seed": 20260910,
   "input_files": [
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/solve.py",
+      "path": "solve.py",
       "sha256": "a08833e8e7e1ca2473048fde99a5c1b24706711264deba1921f829fd53a05687",
       "bytes": 15924
     },
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/run_all.py",
+      "path": "run_all.py",
       "sha256": "4d226a3840a96572a772684d725e7327f4e671f48c80592d4181643faba381ad",
       "bytes": 11171
     },
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/make_figures.py",
+      "path": "make_figures.py",
       "sha256": "5948cdfbd11d214325bbccefc5f4ed822b44847985bc666747440a549ffa08fd",
       "bytes": 10917
     },
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/verify_moving_domain.py",
+      "path": "verify_moving_domain.py",
       "sha256": "3f6f409da0fb700bb1c02f57389ddbd78a754d223083cd124d897d5f7187cf03",
       "bytes": 8677
     },
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/export_result2_full.py",
+      "path": "export_result2_full.py",
       "sha256": "c81ff0cbcd75cce601289aa82d74b07f323e0c1574728ebf19db7025fdca7694",
       "bytes": 10780
     },
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/test_sync.py",
+      "path": "test_sync.py",
       "sha256": "d228ef40927af1db6324351591b25860f75278e4568b398e253d402888818c59",
       "bytes": 1927
     },
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/reproduce.py",
+      "path": "reproduce.py",
       "sha256": "08ba48f9fba7278a4ba04a5a2bb03f277de9ec33f531602868842d3ef12e5d2d",
       "bytes": 3356
     },
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/requirements.txt",
+      "path": "requirements.txt",
       "sha256": "ad5b826b3746c67fb2ea58338748e212698d833fffe043699ca58a01f4f36eda",
       "bytes": 126
     },
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/A题.pdf",
+      "path": "A题.pdf",
       "sha256": "052d8014bff5727c019b72e44fdffaf5c145ce04050dd938baaf3527db331736",
       "bytes": 553320
     },
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/题目分析报告.md",
+      "path": "题目分析报告.md",
       "sha256": "c9892fa97a4b7d4b281aa7ba5d1e9e2efbbd36ae034a0a7d9320bd31798ca0a8",
       "bytes": 14439
     },
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/术语表格.md",
+      "path": "术语表格.md",
       "sha256": "5f8a6f2b9785f1e865d58479ebbf1b059d5b5ce01eafb5da42fef793c7ee216e",
       "bytes": 1252
     },
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/附件/附件1.xlsx",
+      "path": "附件/附件1.xlsx",
       "sha256": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
       "bytes": 16586
     },
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/附件/附件2.xlsx",
+      "path": "附件/附件2.xlsx",
       "sha256": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af",
       "bytes": 11485
     },
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/附件/附件3/result1.xlsx",
+      "path": "附件/附件3/result1.xlsx",
       "sha256": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4",
       "bytes": 10073
     },
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/附件/附件3/result2.xlsx",
+      "path": "附件/附件3/result2.xlsx",
       "sha256": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4",
       "bytes": 10073
     },
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/附件/附件3/result3.xlsx",
+      "path": "附件/附件3/result3.xlsx",
       "sha256": "07e4793d620a7f899804c0298d49a16a197960440fd47f8bb780c57ec27e2859",
       "bytes": 9345
     },
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/附件/附件3/result4.xlsx",
+      "path": "附件/附件3/result4.xlsx",
       "sha256": "86e9300ffa3d30c43de895ea6723da943e85b8740b137bcae5af7107f076eeac",
       "bytes": 9351
     },
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/utils/export_figure.py",
+      "path": "utils/export_figure.py",
       "sha256": "f60b55b719a77afaf50cfbb56db5043fb802900bb7b0b300bfb493141777be24",
       "bytes": 6451
     },
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/utils/plot_style.py",
+      "path": "utils/plot_style.py",
       "sha256": "f3de0a0c858d6018310d7e461574697a4cec7b28e5e20b8ccdaa7749772147e2",
       "bytes": 17160
     },
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/utils/read_rows.py",
+      "path": "utils/read_rows.py",
       "sha256": "ab15b3bd0d0c9b368af82c6e7836b1073167c965e382cf2d1fa654aa1b077e17",
       "bytes": 896
     },
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/utils/repro_manifest.py",
+      "path": "utils/repro_manifest.py",
       "sha256": "696e0325ed1f96418f33787c8c6852b3e024430290653abe76253b0a7b47535a",
       "bytes": 4367
     },
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/utils/setup_style.py",
+      "path": "utils/setup_style.py",
       "sha256": "e2e5c26cea110c19a690c4f79b1d4b8a378cac665c61ebe9982d371169757531",
       "bytes": 11795
     },
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/assets/wqy-font-license.txt",
+      "path": "assets/wqy-font-license.txt",
       "sha256": "d183af7db6d782fe7009eeafef0cef67099ef50ef18dd81513de8004b0361cb7",
       "bytes": 2618
     },
     {
-      "path": "/vepfs-mlp2/mlp-public/250289/users/fengyuan/ydx/workouts/A题/最终同步_20260912_v3/.qa_p2_final_jlXAys/assets/wqy-zenhei.ttc",
+      "path": "assets/wqy-zenhei.ttc",
       "sha256": "79c18ebe7b811951e8311bad7103ebeae8c337ed9988ea69e8a78a66cfe029b9",
       "bytes": 16791251
     }
