@@ -1,6 +1,5 @@
 """
-scipilot-figure-skill :: export_figure.py
-=========================================
+Scientific figure export utilities.
 Unified figure export to multiple formats at exact final size.
 
 - Vector preferred: PDF / SVG / EPS for line/bar/scatter (lossless, journal-friendly).
@@ -187,4 +186,3 @@ def _cli() -> int:
 
 if __name__ == "__main__":
     sys.exit(_cli())
-

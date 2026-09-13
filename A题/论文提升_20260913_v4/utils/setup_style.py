@@ -1,6 +1,5 @@
 """
-scipilot-figure-skill :: setup_style.py
-=======================================
+Scientific figure style configuration.
 Publication-grade matplotlib / seaborn style configuration.
 
 应用出版级样式预设。支持 nature / ieee / science / general 四种期刊预设，
@@ -350,4 +349,3 @@ def _cli() -> int:
 
 if __name__ == "__main__":
     sys.exit(_cli())
-

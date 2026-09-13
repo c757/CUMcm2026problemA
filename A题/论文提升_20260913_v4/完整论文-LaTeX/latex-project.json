@@ -60,175 +60,175 @@
       "destination": "code/solve.py",
       "sha256": "a08833e8e7e1ca2473048fde99a5c1b24706711264deba1921f829fd53a05687",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.653405+00:00"
+      "bound_at": "2026-09-13T04:56:38.077427+00:00"
     },
     {
       "source": "run_all.py",
       "destination": "code/run_all.py",
       "sha256": "4d226a3840a96572a772684d725e7327f4e671f48c80592d4181643faba381ad",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.657359+00:00"
+      "bound_at": "2026-09-13T04:56:38.081353+00:00"
     },
     {
       "source": "make_figures.py",
       "destination": "code/make_figures.py",
-      "sha256": "5948cdfbd11d214325bbccefc5f4ed822b44847985bc666747440a549ffa08fd",
+      "sha256": "ef7a8af3e0f0251acc23091dc466cc892264bf06453a48c4ca2543819fc6081c",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.661327+00:00"
+      "bound_at": "2026-09-13T04:56:38.085017+00:00"
     },
     {
       "source": "verify_moving_domain.py",
       "destination": "code/verify_moving_domain.py",
       "sha256": "3f6f409da0fb700bb1c02f57389ddbd78a754d223083cd124d897d5f7187cf03",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.664976+00:00"
+      "bound_at": "2026-09-13T04:56:38.088816+00:00"
     },
     {
       "source": "export_result2_full.py",
       "destination": "code/export_result2_full.py",
       "sha256": "c81ff0cbcd75cce601289aa82d74b07f323e0c1574728ebf19db7025fdca7694",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.669081+00:00"
+      "bound_at": "2026-09-13T04:56:38.092570+00:00"
     },
     {
       "source": "reproduce.py",
       "destination": "code/reproduce.py",
       "sha256": "08ba48f9fba7278a4ba04a5a2bb03f277de9ec33f531602868842d3ef12e5d2d",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.671157+00:00"
+      "bound_at": "2026-09-13T04:56:38.094602+00:00"
     },
     {
       "source": "test_sync.py",
       "destination": "code/test_sync.py",
       "sha256": "d228ef40927af1db6324351591b25860f75278e4568b398e253d402888818c59",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.742627+00:00"
+      "bound_at": "2026-09-13T04:56:38.096631+00:00"
     },
     {
       "source": "requirements.txt",
       "destination": "code/requirements.txt",
       "sha256": "ad5b826b3746c67fb2ea58338748e212698d833fffe043699ca58a01f4f36eda",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.745375+00:00"
+      "bound_at": "2026-09-13T04:56:38.098619+00:00"
     },
     {
       "source": "utils/export_figure.py",
       "destination": "code/utils/export_figure.py",
-      "sha256": "f60b55b719a77afaf50cfbb56db5043fb802900bb7b0b300bfb493141777be24",
+      "sha256": "61fccd231374faee69c5ccf5161c4e3a58392f2bdae2c62c74914e437fe8b09f",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.751119+00:00"
+      "bound_at": "2026-09-13T04:56:38.102608+00:00"
     },
     {
       "source": "utils/plot_style.py",
       "destination": "code/utils/plot_style.py",
-      "sha256": "f3de0a0c858d6018310d7e461574697a4cec7b28e5e20b8ccdaa7749772147e2",
+      "sha256": "593ca567b5d3e25c61f0d0ee89ad1a3a4eb3a77bbffa58f119ee7dff22abb8d4",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.756975+00:00"
+      "bound_at": "2026-09-13T04:56:38.106246+00:00"
     },
     {
       "source": "utils/read_rows.py",
       "destination": "code/utils/read_rows.py",
       "sha256": "ab15b3bd0d0c9b368af82c6e7836b1073167c965e382cf2d1fa654aa1b077e17",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.759960+00:00"
+      "bound_at": "2026-09-13T04:56:38.108265+00:00"
     },
     {
       "source": "utils/repro_manifest.py",
       "destination": "code/utils/repro_manifest.py",
-      "sha256": "696e0325ed1f96418f33787c8c6852b3e024430290653abe76253b0a7b47535a",
+      "sha256": "5c1302f71571c68c5edcdfdab8708f7c524c85579b390c1dd2045a9591cd5ddf",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.764950+00:00"
+      "bound_at": "2026-09-13T04:56:38.111949+00:00"
     },
     {
       "source": "utils/setup_style.py",
       "destination": "code/utils/setup_style.py",
-      "sha256": "e2e5c26cea110c19a690c4f79b1d4b8a378cac665c61ebe9982d371169757531",
+      "sha256": "93877686cba0475274e1a2b504d3ce50fd23d675b91ef2d52ece5b537eb81893",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.769750+00:00"
+      "bound_at": "2026-09-13T04:56:38.115920+00:00"
     },
     {
       "source": "figures/process_q2_diffusion.pdf",
       "destination": "figures/process_q2_diffusion.pdf",
       "sha256": "69d641cf32fe964d59db9ab1dce3f811e610c75c35e6e108af31e162792e3d84",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.844728+00:00"
+      "bound_at": "2026-09-13T04:56:38.120595+00:00"
     },
     {
       "source": "figures/process_q3_convergence.pdf",
       "destination": "figures/process_q3_convergence.pdf",
       "sha256": "71943d1c71cfaa5ffb5f9cd4b50226375736b98a31f960f7f4aa1e3dd1e58739",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.850279+00:00"
+      "bound_at": "2026-09-13T04:56:38.124180+00:00"
     },
     {
       "source": "figures/process_q3_threshold.pdf",
       "destination": "figures/process_q3_threshold.pdf",
       "sha256": "9a3aa54000839f1a9d5845e1ff4d3b840fcaa7fcd937ae52cd96d3a805efb342",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.855446+00:00"
+      "bound_at": "2026-09-13T04:56:38.127620+00:00"
     },
     {
       "source": "figures/process_q4_moving.pdf",
       "destination": "figures/process_q4_moving.pdf",
       "sha256": "3cfb3c6b31299b626e0888c439df1d85e3d7b8c170f82db2adb8faefe90dcf07",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.861767+00:00"
+      "bound_at": "2026-09-13T04:56:38.131785+00:00"
     },
     {
       "source": "figures/raw_q1_environment.pdf",
       "destination": "figures/raw_q1_environment.pdf",
       "sha256": "fe28469ab6cbc0d22f77a134c88a9a945e89f24d2ee982cada2ebaafdd343118",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.866781+00:00"
+      "bound_at": "2026-09-13T04:56:38.135350+00:00"
     },
     {
       "source": "figures/raw_q3_diffusivity.pdf",
       "destination": "figures/raw_q3_diffusivity.pdf",
       "sha256": "7ef6a79377ec6e28c284706beb884e56e918ecef4051e7330673e9668504d304",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.871552+00:00"
+      "bound_at": "2026-09-13T04:56:38.138799+00:00"
     },
     {
       "source": "figures/raw_q4_radius.pdf",
       "destination": "figures/raw_q4_radius.pdf",
-      "sha256": "ad05eb7cd98cf9651018faa6f92cfe1f92644ce970853d8cd26b7ba4f3fe1e18",
+      "sha256": "c47c6137b29bd05e0fb64e9c946f4fd240fd58192f9185504a2d2c09b79d8ea9",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.945806+00:00"
+      "bound_at": "2026-09-13T04:56:38.142324+00:00"
     },
     {
       "source": "figures/result_q1_profiles.pdf",
       "destination": "figures/result_q1_profiles.pdf",
       "sha256": "a9a157179bd5bf0bd77c1bb8680378ad675a2ea27ed33f749da2a20afdfbf6dc",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.951421+00:00"
+      "bound_at": "2026-09-13T04:56:38.145764+00:00"
     },
     {
       "source": "figures/result_q2_fields.pdf",
       "destination": "figures/result_q2_fields.pdf",
       "sha256": "7a1affca471f2674591ae7a447d980c705ba825be7a28e707fbd29cbe210cca4",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.960395+00:00"
+      "bound_at": "2026-09-13T04:56:38.151507+00:00"
     },
     {
       "source": "figures/result_q3_terminal.pdf",
       "destination": "figures/result_q3_terminal.pdf",
       "sha256": "1f4cbb53ffe011b95e3072bc921b50a8aa93dcb6854846424c8b18eb678c328e",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.966199+00:00"
+      "bound_at": "2026-09-13T04:56:38.155227+00:00"
     },
     {
       "source": "figures/result_q4_counterfactual.pdf",
       "destination": "figures/result_q4_counterfactual.pdf",
-      "sha256": "a37378c77658666e6f1281c8597d4ac77571799d6f3911df40e6f87b8256f831",
+      "sha256": "37a45ef910e963f38de74203666fc4594b3281a41155422527fc2dfa34da2274",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:27.971277+00:00"
+      "bound_at": "2026-09-13T04:56:38.158614+00:00"
     },
     {
       "source": "figures/result_q4_sensitivity.pdf",
       "destination": "figures/result_q4_sensitivity.pdf",
       "sha256": "989db88f4aa382aa82162949fdc3af818f611088f5622098a15e50a85231aa23",
       "hash_mode": "content",
-      "bound_at": "2026-09-12T16:45:28.042460+00:00"
+      "bound_at": "2026-09-13T04:56:38.161979+00:00"
     }
   ],
   "created_at": "2026-09-12T16:34:32.544814+00:00"

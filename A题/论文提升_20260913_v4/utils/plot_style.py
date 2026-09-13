@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
-"""数学建模论文图的统一样式工具（向后兼容层）。
-
-本文件保留原有 API 以兼容 ``from utils.plot_style import ...`` 的外部代码。
-实际常量和工具函数已迁移到 tools/figure/scripts/style_constants.py。
-布局审计和导出功能由 tools/figure/scripts/visual_qa.py 和
-tools/figure/scripts/export_figure.py 替代。
-"""
+"""论文图的统一样式、字体选择与导出检查。"""
 
 from __future__ import annotations
 
@@ -17,7 +11,7 @@ from typing import Sequence
 
 
 # ---------------------------------------------------------------------------
-# SKILL_ROOT 定位
+# 依赖资源定位
 # ---------------------------------------------------------------------------
 
 def _is_math_modeling_skill_root(path: Path) -> bool:
@@ -210,7 +204,7 @@ def add_panel_labels(
 # ---------------------------------------------------------------------------
 
 def resolve_output_stem(output_stem: str | Path) -> Path:
-    """解析导出路径，并禁止把任务产物写回 Skill 目录。"""
+    """解析导出路径，避免覆盖工具资源目录。"""
     stem = Path(output_stem).expanduser().resolve()
     if stem.suffix.lower() in {".svg", ".png", ".pdf"}:
         stem = stem.with_suffix("")

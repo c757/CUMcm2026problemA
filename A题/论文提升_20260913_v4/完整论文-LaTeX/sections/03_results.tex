@@ -1,5 +1,23 @@
-\section{问题一：常热物性下的短时温湿分布}
-\subsection{指定位置与时刻的计算结果}
+\section{问题一的模型建立与求解}\label{sec:q1}
+\subsection{建模思路}
+基于第\ref{sec:common}章的统一模型，分别求解预热阶段的温度和含水率。保持热物性不变，仅在水分方程中更新$D(C)$，以中心与表面响应的差异描述短时传递过程。
+
+\subsection{变量与参数设置}
+半径固定为2厘米，初态和边界采用式\eqref{eq:initial}、\eqref{eq:bc}。材料参数取原题附录2，见式\eqref{eq:props1}，单位沿用表\ref{tab:symbol}。外部工况使用前1800秒记录，不涉及尾段延拓。
+
+\begin{equation}\label{eq:props1}
+\rho_h=820,\quad c_p=2600,\quad k=0.36,\quad
+D=7\times10^{-9}\exp(-0.89/C).
+\end{equation}
+
+\subsection{模型建立}
+将式\eqref{eq:props1}代入公共方程\eqref{eq:pdes}，温度方程成为常系数径向导热方程，水分方程保留含水率相关扩散系数。两场通过同一径向几何和外部环境分别演化。本问按给定时长结束，求解目标为指定时空点的$\theta$和$C$。
+
+\subsection{求解方法}
+采用第\ref{sec:common}章的640区间表面加密网格与BDF积分，在0至1800秒内求解。相对容差为$10^{-8}$，最大步长15秒；绝对容差与径向重建方法沿用公共设置。连续解按每秒、每0.1厘米采样，另外摘录原题指定位置形成两张题表。
+
+\subsection{结果展示与分析}
+
 表\ref{tab:paper1}和表\ref{tab:paper2}列出100、300、600、900、1200、1500、1800秒时，半径0、0.5、1.0、1.5、2.0厘米处的温度与干基含水率。结果由最终640区间网格的未舍入数值解采样得到，完整逐秒数据保存在工作簿1中。
 
 \input{tables/table1.tex}
@@ -14,7 +32,8 @@
 \caption{问题一在100、600和1800秒的径向温湿剖面，同一时刻采用相同颜色与线型。}\label{fig:q1-profiles}
 \end{figure}
 
-\subsection{传递尺度及边界阻力解释}
+\subsection{模型检验}
+
 问题一的热扩散率为$k/(\rho_h c_p)=1.6886\times10^{-7}$平方米每秒，初始水分扩散系数为$4.9377\times10^{-9}$平方米每秒，前者约为后者的34倍。在相同几何尺度下，热量比水分更快影响内部。以半径定义式\eqref{eq:bi}中的Biot数，热Biot数为1.3889，需保留内部温度梯度。
 
 \begin{equation}\label{eq:bi}
@@ -23,12 +42,54 @@
 {\rm Bi}_C=\frac{h_mR}{D}.
 \end{equation}
 
-初始水分Biot数约为3.2404。将$C=0.15$代入题设函数，得到$D=1.8547\times10^{-11}$平方米每秒，相应水分Biot数约为862.65。这里用函数值说明低含水率时内部阻力的增大，所取$C=0.15$并非问题一在0.50小时的实际状态。计算中仍按各节点状态更新$D$。
+初始水分Biot数约为3.2404。将$C=0.15$代入题设函数，得到$D=1.8547\times10^{-11}$平方米每秒，相应水分Biot数约为862.65。这里用函数值说明低含水率时内部阻力的增大，该函数点用于数量级对比，0.50小时状态仍由题表给出。计算中仍按各节点状态更新$D$。
 
 表面含水率在短时间内下降较快，表面状态与环境之间仍保留有限差值。Robin条件通过题给传递系数确定交换速率，描述表面温度和含水率对环境变化的响应。
 
-\section{问题二：变物性热湿耦合过程}
-\subsection{前三小时的结果与反馈}
+\subsection{本问结论}
+在题给常热物性和前0.50小时环境下，中心、表面温度分别为33.5753、36.7856摄氏度，含水率分别为2.5500、1.5102 kg/kg。预热已使中心升温，明显失水仍集中在外层，后续求解应保留径向差异。
+
+\section{问题二的模型建立与求解}\label{sec:q2}
+\subsection{建模思路}
+本问将问题一的常热物性替换为温湿相关函数，从初态联立计算全过程。中心—表面差异用于描述径向非均匀性，局部扩散系数用于解释升温与失水的共同作用。
+
+\subsection{变量与参数设置}
+几何、初值和传递系数沿用公共设置，从$t=0$起统一采用原题附录3的式\eqref{eq:props23}。环境在前4小时按记录插值，此后按第\ref{sec:common}章的常值条件延拓。前三小时为题表摘录范围，完整积分与问题三的终点判定衔接。
+
+\begin{equation}\label{eq:props23}
+\begin{aligned}
+\rho_h&=650+128C,&
+c_p&=1450+\frac{2736C}{1+C},\\
+k&=0.21+\frac{0.38C}{1+C},&
+D&=0.0024\exp\left(-\frac{0.45}{C}-\frac{3850}{T_K}\right).
+\end{aligned}
+\end{equation}
+
+\subsection{模型建立}
+将式\eqref{eq:props23}代入式\eqref{eq:pdes}，在每次状态更新时同时计算$A(C)$、$k(C)$和$D(\theta,C)$，构成双向热湿耦合。温度使用摄氏度求解，扩散指数采用绝对温度$T_K$。
+
+图\ref{fig:q3-dfunction}展示问题二、三的扩散函数。温度项体现升温对扩散的促进，低含水率区的指数衰减则形成后期阻力。温度相关扩散函数也见于柱状食品热湿耦合研究\cite{tzempelikos2015quince}，此处结构与参数仍以题目为准。
+\begin{figure}[htbp]\centering
+\includegraphics[width=\linewidth]{figures/raw_q3_diffusivity.pdf}
+\caption{问题二、三在28与50摄氏度下的题设扩散函数，纵轴采用对数刻度。}\label{fig:q3-dfunction}
+\end{figure}
+
+\subsection{求解方法}
+沿用640区间网格、BDF及第\ref{sec:common}章的容差和分段积分设置。联立系统提供解析稀疏雅可比：相邻系数$a,b$的调和平均记为$H(a,b)$，其导数及本问扩散函数的导数见式\eqref{eq:jacderiv}。温度对水分的导数还包含容量分母产生的$-\dot\theta_iA'_i/A_i$。
+
+\begin{equation}\label{eq:jacderiv}
+\begin{aligned}
+\frac{\partial H}{\partial a}&=\frac{2b^2}{(a+b)^2},&
+\frac{\partial H}{\partial b}&=\frac{2a^2}{(a+b)^2},\\
+\frac{\partial D}{\partial\theta}&=D\frac{3850}{T_K^2},&
+\frac{\partial D}{\partial C}&=D\frac{0.45}{C^2}.
+\end{aligned}
+\end{equation}
+
+积分至问题三确定的终点，两个工作表均输出全过程逐秒结果，表\ref{tab:paper3}、\ref{tab:paper4}只列0.5至3.0小时。输出间隔用于采样，与自适应积分步长区分。
+
+\subsection{结果展示与分析}
+
 问题二的六个指定时刻结果见表\ref{tab:paper3}和表\ref{tab:paper4}。0.50小时，中心、表面温度分别为32.1892、35.4130摄氏度，均低于问题一；表面含水率为1.6486，高于问题一的1.5102。这一差异来自热容量、导热率和扩散函数的共同改变，传热及传质系数保持不变。
 
 \input{tables/table3.tex}
@@ -43,7 +104,6 @@
 \caption{问题二前三小时的温度与含水率场，按60秒间隔和101个径向重建点展示。}\label{fig:q2-fields}
 \end{figure}
 
-\subsection{扩散函数沿计算轨迹的变化}
 扩散系数随温度升高而增大，随含水率降低而减小。图\ref{fig:q2-dtrajectory}将求得的温湿场代入题设函数，展示两种作用共同形成的局部扩散系数变化，色标采用对数形式。
 
 \begin{figure}[htbp]\centering
@@ -51,38 +111,30 @@
 \caption{问题二前三小时的局部扩散系数，由温湿解代入题设函数得到，色标采用对数形式。}\label{fig:q2-dtrajectory}
 \end{figure}
 
+\subsection{模型检验}
+
 在50摄氏度下，$C=2.55$时的扩散系数约为$1.3471\times10^{-8}$平方米每秒；$C=0.15$时为$8.0012\times10^{-10}$，$C=0.05$时降至$1.9833\times10^{-12}$。即使表层已升温，含水率降低仍可使其成为低扩散区，这有助于解释后期脱水减慢。
 
-含水率降低时，有效体积热容量和导热率均下降。前者使同等净热流引起的温度变化加快，后者减小内部导热能力；两种作用由联立方程共同确定。问题三延续该初边值问题，计算至全域含水率阈值。
+含水率降低时，有效体积热容量和导热率均下降。前者使同等净热流引起的温度变化加快，后者减小内部导热能力；两种作用由联立方程共同确定。这些变化方向与图\ref{fig:q2-fields}及图\ref{fig:q2-dtrajectory}中的场分布一致，属于所用机理下的趋势检查。数值加密比较集中见第\ref{sec:checks}章。
 
-问题二、三采用同一积分解。问题二从连续解中逐秒采样，问题三按60秒间隔输出，并由事件函数确定终点。两者的区别在于结果呈现方式。
+\subsection{本问结论}
+在统一变物性与固定半径条件下，3小时径向温差已降至0.1169摄氏度，中心和表面含水率仍为1.7662、1.0081 kg/kg。水分均匀化明显滞后于升温，温度接近环境不足以作为完成指标；全过程含水率轨迹继续用于问题三。
 
-\section{问题三：固定半径的全域达标时间}
-\subsection{事件判据与三种含水指标}
-“药材内部各处均低于0.15”对应最大值条件。式\eqref{eq:metrics}分别定义径向最大含水率、体积权均值和表面含水率。计算在全部节点上取最大值，保形径向重建保持节点间的单调性。在已检查时刻，最大值位于中心附近；终点算法仍使用全部节点的最大值。
+\section{问题三的模型建立与求解}\label{sec:q3}
+\subsection{建模思路}
+本问继承问题二的全场解，将求解目标由过程描述转为完成时间。用式\eqref{eq:metrics}的径向最大含水率覆盖内部较慢脱水的位置，再以表面值和均值检查不同指标的判定差异。
 
-\begin{equation}\label{eq:metrics}
-C_{\max}(t)=\max_{0\leq r\leq R(t)}C(r,t),\qquad
-\overline C(t)=\frac{2}{R(t)^2}\int_0^{R(t)}rC(r,t)\,dr,\qquad
-C_s(t)=C(R(t),t).
-\end{equation}
+\subsection{变量与参数设置}
+固定半径$R_0=2$厘米，物性采用式\eqref{eq:props23}，初态、传递系数和环境延拓与问题二相同。目标阈值为0.15 kg/kg，搜索时间上限设为7天；若到达上限仍未越阈，则报告该区间内尚未完成。
 
-先定位$C_{\max}-0.15$由正到负的事件，再按式\eqref{eq:event}确定严格小于阈值的整秒输出时刻。由于题目采用严格不等式，事件恰在整数秒发生时仍取下一秒，并用未舍入的全部节点状态检查该时刻。
+\subsection{模型建立}
+公共方程\eqref{eq:pdes}和边界\eqref{eq:bc}保持不变，以式\eqref{eq:event}定义的首次向下越阈事件作为终点。数值判据使用全部径向节点的未舍入含水率，保形重建避免在相邻节点间产生额外极值。
 
-\begin{equation}\label{eq:event}
-C_{\max}(t_*)=0.15\ \text{且向下穿越},\qquad
-t_{\rm int}=\lfloor t_*\rfloor+1,\qquad
-C_{\max}(t_{\rm int})<0.15.
-\end{equation}
+\subsection{求解方法}
+沿用问题二的640区间网格与分段BDF积分，通过连续时间输出定位$C_{\max}-0.15$的零点，再积分至满足严格不等式的下一整秒。每60秒输出一次并补入终点，正文题表每6小时摘录；整秒记录与时空输出范围见附录\ref{app:outputs}。事件的数值稳定性见第\ref{sec:checks}章。
 
-图\ref{fig:q3-threshold}比较三种含水指标。按60秒保存轨迹线性插值，表面值约在12.5521小时达到0.15，均值约在36.0251小时达到0.15；最大值的事件时间为57.4728小时。前两个时间是轨迹插值近似值，最大值时间由事件求根得到。采用最大值判据能覆盖内部较慢脱水的位置。
+\subsection{结果展示与分析}
 
-\begin{figure}[htbp]\centering
-\includegraphics[width=\linewidth]{figures/process_q3_threshold.pdf}
-\caption{问题三的最大、平均及表面含水率，按60秒间隔并补入终点；点线表示阈值0.15。}\label{fig:q3-threshold}
-\end{figure}
-
-\subsection{终点数值及每六小时结果}
 最终网格下，问题三的越阈时间为57.4728小时。终点表面含水率约为0.0527，体积权均值约为0.1243。表\ref{tab:paper5}列出每6小时及严格终点的指定位置结果。
 
 \input{tables/table5.tex}
@@ -96,9 +148,59 @@ C_{\max}(t_{\rm int})<0.15.
 \caption{问题三终点的径向含水率分布，中心接近阈值，表面含水率较低。}\label{fig:q3-terminal}
 \end{figure}
 
-\section{问题四：实测收缩下的移动边界}
-\subsection{随体坐标与运动项}
-在均匀径向收缩假设下，材料速度为$v(r,t)=r\dot R/R$。令$x=r/R(t)$，对随材料输运的标量$u$定义$U(x,t)=u(R(t)x,t)$，可得式\eqref{eq:ale}。固定空间时间导数中的坐标变化项与材料平流项抵消，随体坐标下的时间导数即为物质导数。
+\subsection{模型检验}
+
+图\ref{fig:q3-threshold}比较三种含水指标。按60秒保存轨迹线性插值，表面值约在12.5521小时达到0.15，均值约在36.0251小时达到0.15；最大值的事件时间为57.4728小时。前两个时间是轨迹插值近似值，最大值时间由事件求根得到。采用最大值判据能覆盖内部较慢脱水的位置。
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=\linewidth]{figures/process_q3_threshold.pdf}
+\caption{问题三的最大、平均及表面含水率，按60秒间隔并补入终点；点线表示阈值0.15。}\label{fig:q3-threshold}
+\end{figure}
+
+该对照检验了完成指标与题意的一致性：表面值和均值越阈时，内部仍可有位置高于要求。已检查时刻的最大值位于中心附近，但计算始终对全部节点取最大值。
+
+\subsection{本问结论}
+在题给固定几何、物性及约定尾段环境下，最大含水率的越阈时间为57.4728小时。该时间回答一维径向场的各处达标要求；表面值和均值仅用于辅助描述，时间有效精度由第\ref{sec:checks}章的加密结果限定。
+
+\section{问题四的模型建立与求解}\label{sec:q4}
+\subsection{建模思路}
+采用另一组物性和给定半径轨迹，在公共模型中补充材料运动。移动边界干燥可用ALE方法描述网格与材料输运\cite{seyedabadi2017ale}，本问取网格随材料均匀径向收缩的情形。干质量守恒用于推导干基含水率方程，最大值事件仍按公共判据确定。
+
+\subsection{变量与参数设置}
+材料函数取原题附录4的式\eqref{eq:props4}，初态、长度、传递系数及尾段环境沿用公共设置。$\rho_h(C)$用于有效热容量，$\rho_d(t)$由干质量与几何关系确定，两类密度按第\ref{sec:symbols}章的含义使用。
+
+\begin{equation}\label{eq:props4}
+\begin{aligned}
+\rho_h&=760+90C,&
+c_p&=1850+\frac{2150C}{1+C},\\
+k&=0.12+\frac{0.20C}{1+C},&
+D&=0.00042\exp\left(-\frac{0.30}{C}-\frac{3850}{T_K}\right).
+\end{aligned}
+\end{equation}
+
+半径按相邻记录线性插值，见图\ref{fig:q4-radius}。6、12、24小时的半径分别为1.374、1.248、1.204厘米，末值为1.198厘米。收缩求解限定在72小时记录范围内。
+\begin{figure}[htbp]\centering
+\includegraphics[width=\linewidth]{figures/raw_q4_radius.pdf}
+\caption{附件2的145条半径记录及分段线性插值。}\label{fig:q4-radius}
+\end{figure}
+
+\subsection{模型建立}
+
+材料速度为$v=r\dot R/R$，长度$L$保持不变；$\mathrm D/\mathrm Dt$表示沿材料运动的物质导数。干质量$M_d=\rho_d\pi R^2L=\rho_{d0}\pi R_0^2L$恒定，水质量为$M_w=M_d\overline C$。下面由两种质量的连续性关系推导含水率方程。均匀收缩使单位体积内两种质量同时变化，压缩本身保持该比值。设干固体密度$\rho_d(t)$在截面上均匀，长度不变且干质量守恒，则$\rho_dR^2$为常数。取相对干固体的扩散通量为$-\rho_dD\nabla C$，由水分与干固体连续性方程得到式\eqref{eq:drybasis}。
+
+\begin{equation}\label{eq:drybasis}
+\begin{aligned}
+\frac{{\rm D}\rho_d}{{\rm D}t}+\rho_d\nabla\!\cdot v&=0,\\
+\rho_d\frac{{\rm D}C}{{\rm D}t}
+&=\nabla\!\cdot(\rho_dD\nabla C),\\
+\rho_d(t)=\rho_{d0}\left(\frac{R_0}{R(t)}\right)^2\quad&\Longrightarrow\quad
+\frac{{\rm D}C}{{\rm D}t}=\nabla\!\cdot(D\nabla C).
+\end{aligned}
+\end{equation}
+
+空间均匀的$\rho_d(t)$可从散度中提出并约去，得到式\eqref{eq:moving}中的水分方程，压缩对两种质量的影响在干基比值中相消。若改用单位当前体积的水浓度，压缩项的形式将随变量定义改变；相关移动边界研究采用过这类体积变量\cite{adrover2020pears}。
+
+令$x=r/R(t)$，对随材料输运的标量$u$定义$U(x,t)=u(R(t)x,t)$，可得式\eqref{eq:ale}。固定空间时间导数中的坐标变化项与材料平流项抵消，随体坐标下的时间导数即为物质导数。
 
 \begin{equation}\label{eq:ale}
 \left.\frac{\partial u}{\partial t}\right|_r
@@ -108,7 +210,7 @@ v\,u_r=\frac{x\dot R}{R}U_x,\qquad
 \frac{{\rm D}u}{{\rm D}t}=U_t.
 \end{equation}
 
-移动边界干燥中可用ALE方法描述网格和材料运动\cite{seyedabadi2017ale}。这里采用网格随材料均匀收缩的情形，固定$x$对应同一材料位置。
+固定$x$对应同一材料位置，计算网格在归一化坐标中保持不变。
 
 随体坐标下的方程和表面条件见式\eqref{eq:moving}，其中时间导数均在固定$x$下计算。沿用有限体积离散，在各时刻更新半径和问题四物性。内部扩散含$R(t)^{-2}$因子，归一化表面交换含$R(t)^{-1}$因子，二者共同决定收缩后的传递速度。
 
@@ -123,24 +225,11 @@ C_t&=\frac{1}{R(t)^2x}
 \end{aligned}
 \end{equation}
 
-\subsection{干基变量为何不直接增加压缩项}
-干基含水率为水质量与干物质质量之比。均匀收缩使单位体积内两种质量同时变化，压缩本身保持该比值。设干固体密度$\rho_d(t)$在截面上均匀，长度不变且干质量守恒，则$\rho_dR^2$为常数。取相对干固体的扩散通量为$-\rho_dD\nabla C$，由水分与干固体连续性方程得到式\eqref{eq:drybasis}。
+\subsection{求解方法}
+在$x\in[0,1]$上沿用640区间有限体积网格和公共BDF设置，各时刻以插值半径更新内部$R(t)^{-2}$与表面$R(t)^{-1}$因子。搜索上限为半径记录末端72小时，遇到最大含水率越阈事件后补入严格整秒。固定物理位置通过$x=r/R(t)$重建，$r>R(t)$的位置留空，并单列实际表面值。
 
-\begin{equation}\label{eq:drybasis}
-\begin{aligned}
-\frac{{\rm D}\rho_d}{{\rm D}t}+\rho_d\nabla\!\cdot v&=0,\\
-\rho_d\frac{{\rm D}C}{{\rm D}t}
-&=\nabla\!\cdot(\rho_dD\nabla C),\\
-\rho_d(t)=\rho_{d0}\left(\frac{R_0}{R(t)}\right)^2\quad&\Longrightarrow\quad
-\frac{{\rm D}C}{{\rm D}t}=\nabla\!\cdot(D\nabla C).
-\end{aligned}
-\end{equation}
+\subsection{结果展示与分析}
 
-空间均匀的$\rho_d(t)$可从散度中提出并约去，得到式\eqref{eq:moving}中的水分方程，无需附加$-C\nabla\!\cdot v$项。初始密度$\rho_{d0}>0$也在归一化方程中约去，计算无需另赋数值。若改用单位当前体积的水浓度，压缩项的形式将随变量定义改变；相关移动边界研究采用过这类体积变量\cite{adrover2020pears}。
-
-题给$\rho_h=760+90C$按表\ref{tab:closure}用于有效热容量，水分收支则相对于不变干质量归一化。两种参数分别承担能量闭合和质量守恒的作用。
-
-\subsection{含水率场、域外位置与严格终点}
 图\ref{fig:q4-moving}以物理半径为纵轴，黑线表示插值半径$R(t)$，域外留白。固定物理半径对应水平线，而同一材料点随$r=xR(t)$运动，应沿该轨迹读取其状态变化。
 
 \begin{figure}[htbp]\centering
@@ -150,8 +239,50 @@ C_t&=\frac{1}{R(t)^2x}
 
 采用与问题三相同的最大含水率判据，问题四的越阈时间为51.0908小时。终点表面含水率约为0.0526，体积权均值约为0.1184，半径为1.2000厘米。终点位于半径记录的72小时范围内。
 
-表\ref{tab:paper6}列出每6小时及严格终点的指定位置含水率。在这些表列时刻，0、0.5、1.0厘米均位于药材内，1.5厘米均在域外。表面列对应实际$R(t)$处状态，随半径轨迹变化。工作簿4中的20099个域外位置按定义留空。
+表\ref{tab:paper6}列出每6小时及严格终点的指定位置含水率。在这些表列时刻，0、0.5、1.0厘米均位于药材内，1.5厘米均在域外。表面列对应实际$R(t)$处状态，随半径轨迹变化。完整输出中的域外位置按定义留空，数量和规则见附录\ref{app:outputs}。
 
 \input{tables/table6.tex}
 
 问题四在6小时的中心含水率为1.7196，高于问题三的1.0170；42小时为0.1712，略低于问题三的0.1721。按60秒最大含水率轨迹插值，两曲线约在41.2小时交叉。物性变化与扩散距离缩短共同影响全过程，问题四在早期较湿，最终却较早达到阈值。
+
+\subsection{模型检验}
+
+为考察给定物性下的收缩影响，保持问题四的物性、初值、传递系数及环境延拓不变，仅将半径固定为2厘米。对照越阈时间为129.8449小时，长于收缩情景的51.0908小时。
+
+记$\tau(\mathcal P,R)$为物性组$\mathcal P$和几何轨迹$R$下的越阈时间，$\mathcal P_3$、$\mathcal P_4$分别表示问题三、四的整组物性。现有计算构成$\tau(\mathcal P_3,R_0)\to\tau(\mathcal P_4,R_0)\to\tau(\mathcal P_4,R(t))$的比较路径。先改变物性使时间增加72.3721小时，再引入收缩使时间减少78.7541小时，净变化见式\eqref{eq:path-contrast}。
+
+\begin{equation}\label{eq:path-contrast}
+\begin{aligned}
+\Delta\tau_{\rm total}
+&=\underbrace{\tau(\mathcal P_4,R_0)-\tau(\mathcal P_3,R_0)}_{\text{固定几何下的整组物性差异}}
+ +\underbrace{\tau(\mathcal P_4,R(t))-\tau(\mathcal P_4,R_0)}_{\text{问题四物性下的几何差异}}\\
+&=72.3721-78.7541\approx-6.3819\ {\rm h}.
+\end{aligned}
+\end{equation}
+
+差值由未舍入事件时间计算，展示时保留四位小数。沿这条路径，收缩引起的缩短超过整组物性改变引起的延长。该分解依赖所选比较路径，只描述整组物性与给定物性下几何变化的条件差异。
+
+图\ref{fig:q4-counter}比较三种情景，式\eqref{eq:reductions}分别计算总体降幅和同物性下的收缩降幅。前者以问题三为基准，后者以问题四物性、固定半径情景为基准，两个百分比具有不同分母。
+
+\begin{equation}\label{eq:reductions}
+\begin{aligned}
+\eta_{\rm total}
+&=1-\frac{\tau(\mathcal P_4,R(t))}{\tau(\mathcal P_3,R_0)}
+ =11.1043\%,\\
+\eta_{\rm shrink}
+&=1-\frac{\tau(\mathcal P_4,R(t))}{\tau(\mathcal P_4,R_0)}
+ =60.6524\%.
+\end{aligned}
+\end{equation}
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=\linewidth]{figures/result_q4_counterfactual.pdf}
+\caption{三种情景的越阈时间：上、中两组几何相同，中、下两组物性相同。}\label{fig:q4-counter}
+\end{figure}
+
+问题四终点半径约为初始的0.6倍，半径平方约为初始的0.36倍，侧面积与体积之比约增至初始的1.667倍。这些变化分别影响内部扩散尺度和表面交换。实际半径与物性均随过程变化，完成时间由整个变化轨迹上的联立方程确定。
+
+固定半径对照采用独立定义的恒定几何，即使计算超过72小时，也无需延拓收缩记录。该情景继续使用4小时后的恒定环境，用于比较给定物性下的几何影响。
+
+\subsection{本问结论}
+均匀径向收缩、长度不变及给定物性下，越阈时间为51.0908小时，终点半径为1.2000厘米。它比问题三早6.3819小时；同物性对照显示，所选比较路径上的几何作用超过整组物性变化造成的延长。该解释限定于给定收缩轨迹和有效参数。

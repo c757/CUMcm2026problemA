@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""生成可复现运行清单，并隔离 SKILL_ROOT 与 PROJECT_ROOT。"""
+"""记录计算环境与输入输出，避免覆盖工具资源。"""
 
 import argparse
 import hashlib
@@ -127,5 +127,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
 

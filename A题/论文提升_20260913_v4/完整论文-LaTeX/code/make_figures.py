@@ -109,7 +109,7 @@ def make_figures():
     a.plot(rad.time_s/3600,rad.radius_cm,color=BLUE,lw=1)
     a.scatter(rad.time_s/3600,rad.radius_cm,s=7,color=BLUE)
     a.set_xlabel('时间 / h');a.set_ylabel('药材半径 / cm');a.set_xlim(0,72)
-    a.set_title('实测半径：145个记录')
+    a.set_title('题给半径：145个记录')
     save(fig,'raw_q4_radius')
 
     fig,axes=panels(height=2.7);a=axes[0,0]
@@ -175,7 +175,7 @@ def make_figures():
     save(fig,'process_q4_moving')
 
     fig,axes=panels(height=2.7);a=axes[0,0]
-    labels=['问题3：固定半径','问题4物性：固定半径','问题4：实测收缩']
+    labels=['问题3：固定半径','问题4物性：固定半径','问题4：给定收缩']
     hours=[summary['runs']['3']['crossing_h'],summary['counterfactual']['crossing_h'],
            summary['runs']['4']['crossing_h']]
     for i,(value,color) in enumerate(zip(hours,COLORS)):
@@ -212,7 +212,6 @@ def make_figures():
     print(json.dumps({'figures':len(list(OUT.glob('*.svg'))),'format':['svg','png','pdf'],'dpi':300}))
 
 if __name__=='__main__':make_figures()
-
 
 
 
